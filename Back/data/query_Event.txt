@@ -1,0 +1,11 @@
+PREFIX ex: <http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?title
+WHERE {
+  ?event rdf:type ex:Event .  # Select all instances of Event
+  ?event ex:ContentFeedback ?ContentFeedback .  # Content feedback of the event
+  ?event ex:title ?title .  # Title of the event
+
+  FILTER (STR(?ContentFeedback) = "good")  # Filter for "good" content feedback
+}

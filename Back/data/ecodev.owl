@@ -1,0 +1,2540 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ontologie1 "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#"
+     xml:base="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ontologie1="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#maxParticipants -->
+
+    <owl:AnnotationProperty rdf:about="&ontologie1;maxParticipants"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Asigned_to -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Asigned_to">
+        <rdfs:domain rdf:resource="&ontologie1;Collection"/>
+        <rdfs:range rdf:resource="&ontologie1;DepotCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Dispo_in -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Dispo_in">
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:range rdf:resource="&ontologie1;SalesCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Participate_at -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Participate_at">
+        <rdfs:domain rdf:resource="&ontologie1;Client"/>
+        <rdfs:range rdf:resource="&ontologie1;Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Recieve -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Recieve">
+        <rdfs:range rdf:resource="&ontologie1;Notification"/>
+        <rdfs:domain rdf:resource="&ontologie1;User"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Send -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Send">
+        <rdfs:domain rdf:resource="&ontologie1;Client"/>
+        <rdfs:range rdf:resource="&ontologie1;Reclamation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Use -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Use">
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:range rdf:resource="&ontologie1;RecyclingMethod"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Write -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;Write">
+        <rdfs:range rdf:resource="&ontologie1;Comment"/>
+        <rdfs:domain rdf:resource="&ontologie1;User"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#add -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;add">
+        <rdfs:domain rdf:resource="&ontologie1;Client"/>
+        <rdfs:range rdf:resource="&ontologie1;Waste"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#added_from -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;added_from">
+        <rdfs:domain rdf:resource="&ontologie1;FeedBack"/>
+        <rdfs:range rdf:resource="&ontologie1;User"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#choose -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;choose">
+        <rdfs:range rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collect -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;collect">
+        <rdfs:range rdf:resource="&ontologie1;Waste"/>
+        <rdfs:domain rdf:resource="&ontologie1;collector"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collect_with -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;collect_with">
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:range rdf:resource="&ontologie1;vehicle"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#deliver_to -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;deliver_to">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:range rdf:resource="&ontologie1;RecyclingCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#distribute_waste_to -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;distribute_waste_to">
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:range rdf:resource="&ontologie1;RecyclingCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#hasFeedback -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;hasFeedback">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&ontologie1;FeedBack"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_as_deliver -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_as_deliver">
+        <rdfs:range rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_as_feedback -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_as_feedback">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&ontologie1;FeedBack"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_as_planning -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_as_planning">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&ontologie1;Program"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_recycling_pourcentage -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_recycling_pourcentage">
+        <rdfs:range rdf:resource="&ontologie1;RecycledContent"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_the_response -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_the_response">
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:range rdf:resource="&ontologie1;Response"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_type_notification -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_type_notification">
+        <rdfs:domain rdf:resource="&ontologie1;Notification"/>
+        <rdfs:range rdf:resource="&ontologie1;TypeNotif"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_type_of -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_type_of">
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:range rdf:resource="&ontologie1;TypeReclamation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_typeof -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;has_typeof">
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:range rdf:resource="&ontologie1;TypeAwareness"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#made_with -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;made_with">
+        <rdfs:range rdf:resource="&ontologie1;Category"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#make_collection -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;make_collection">
+        <rdfs:range rdf:resource="&ontologie1;Collection"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#offer -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;offer">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:range rdf:resource="&ontologie1;SpecialService"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#organise -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;organise">
+        <rdfs:domain rdf:resource="&ontologie1;Admin"/>
+        <rdfs:range rdf:resource="&ontologie1;Training"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#produced_from -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;produced_from">
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:range rdf:resource="&ontologie1;RecyclingCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#publish -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;publish">
+        <rdfs:domain rdf:resource="&ontologie1;Admin"/>
+        <rdfs:range rdf:resource="&ontologie1;Publication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#recieve -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;recieve">
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:range rdf:resource="&ontologie1;Waste"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#sales -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;sales">
+        <rdfs:range rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#send_by -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;send_by">
+        <rdfs:range rdf:resource="&ontologie1;Channel"/>
+        <rdfs:domain rdf:resource="&ontologie1;Notification"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#target_the -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;target_the">
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:range rdf:resource="&ontologie1;Target"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#work_in -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;work_in">
+        <rdfs:range rdf:resource="&ontologie1;Collection"/>
+        <rdfs:domain rdf:resource="&ontologie1;collector"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#working_in -->
+
+    <owl:ObjectProperty rdf:about="&ontologie1;working_in">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:range rdf:resource="&ontologie1;DelivreyAgence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#ContentFeedback -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;ContentFeedback">
+        <rdfs:domain rdf:resource="&ontologie1;FeedBack"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Experation_date -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;Experation_date">
+        <rdfs:domain rdf:resource="&ontologie1;SpecialService"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#ObjectifTypeAwarness -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;ObjectifTypeAwarness">
+        <rdfs:domain rdf:resource="&ontologie1;TypeAwareness"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Title__Program -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;Title__Program">
+        <rdfs:domain rdf:resource="&ontologie1;Program"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#additional_cost -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;additional_cost">
+        <rdfs:domain rdf:resource="&ontologie1;SpecialService"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;address">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address_collector -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;address_collector">
+        <rdfs:domain rdf:resource="&ontologie1;collector"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#audienceType -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;audienceType">
+        <rdfs:domain rdf:resource="&ontologie1;Target"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#availability_statusDelivPers -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;availability_statusDelivPers">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#capacity -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;capacity">
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;vehicle"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;category">
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:domain rdf:resource="&ontologie1;Waste"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category_description -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;category_description">
+        <rdfs:domain rdf:resource="&ontologie1;Category"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#closing_hours -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;closing_hours">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_date -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;collection_date">
+        <rdfs:domain rdf:resource="&ontologie1;Waste"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_location -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;collection_location">
+        <rdfs:domain rdf:resource="&ontologie1;Waste"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#contactInfo_collector -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;contactInfo_collector">
+        <rdfs:domain rdf:resource="&ontologie1;collector"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#content -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;content">
+        <rdfs:domain rdf:resource="&ontologie1;Comment"/>
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#content_description -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;content_description">
+        <rdfs:domain rdf:resource="&ontologie1;RecycledContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#contenu_responseRec -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;contenu_responseRec">
+        <rdfs:domain rdf:resource="&ontologie1;Response"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#date -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;date">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#dateCertification -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;dateCertification">
+        <rdfs:domain rdf:resource="&ontologie1;Certification"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#dateCreationFeedback -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;dateCreationFeedback">
+        <rdfs:domain rdf:resource="&ontologie1;FeedBack"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#dateCreation_Notif -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;dateCreation_Notif">
+        <rdfs:domain rdf:resource="&ontologie1;Notification"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#dateParticipation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;dateParticipation">
+        <rdfs:domain rdf:resource="&ontologie1;Participation"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#dateReclamation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;dateReclamation">
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#dateResponse -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;dateResponse">
+        <rdfs:domain rdf:resource="&ontologie1;Response"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#date_WeeklyEvent -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;date_WeeklyEvent">
+        <rdfs:domain rdf:resource="&ontologie1;WeeklyEvent"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#date_of_collection -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;date_of_collection">
+        <rdfs:domain rdf:resource="&ontologie1;Collection"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#date_ofcreation_vehicle -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;date_ofcreation_vehicle">
+        <rdfs:domain rdf:resource="&ontologie1;vehicle"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#date_program -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;date_program">
+        <rdfs:domain rdf:resource="&ontologie1;Program"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;description">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:domain rdf:resource="&ontologie1;SpecialService"/>
+        <rdfs:domain rdf:resource="&ontologie1;TypeAwareness"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#descriptionCategoryWaste -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;descriptionCategoryWaste">
+        <rdfs:domain rdf:resource="&ontologie1;CategoryWaste"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#descriptionMaterialWaste -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;descriptionMaterialWaste">
+        <rdfs:domain rdf:resource="&ontologie1;Material"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#descriptionRecyclingMethod -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;descriptionRecyclingMethod">
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingMethod"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#descriptionSubject -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;descriptionSubject">
+        <rdfs:domain rdf:resource="&ontologie1;Subject"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#descriptionTraining -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;descriptionTraining">
+        <rdfs:domain rdf:resource="&ontologie1;Training"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#descriptionTypeReclamation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;descriptionTypeReclamation">
+        <rdfs:domain rdf:resource="&ontologie1;TypeReclamation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description_Collection -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;description_Collection">
+        <rdfs:domain rdf:resource="&ontologie1;Collection"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description_channel -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;description_channel">
+        <rdfs:domain rdf:resource="&ontologie1;Channel"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description_reclamation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;description_reclamation">
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description_typeNotif -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;description_typeNotif">
+        <rdfs:domain rdf:resource="&ontologie1;TypeNotif"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#durationTraining -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;durationTraining">
+        <rdfs:domain rdf:resource="&ontologie1;Training"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;email">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:domain rdf:resource="&ontologie1;Participation"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;User"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email_delivPers -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;email_delivPers">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;image">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;Waste"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#langueTarget -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;langueTarget">
+        <rdfs:domain rdf:resource="&ontologie1;Target"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#lastName -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;lastName">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#levelCertification -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;levelCertification">
+        <rdfs:domain rdf:resource="&ontologie1;Certification"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#likes -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;likes">
+        <rdfs:domain rdf:resource="&ontologie1;Comment"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#location -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;location">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#manager_name -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;manager_name">
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#matieres_premieres -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;matieres_premieres">
+        <rdfs:domain rdf:resource="&ontologie1;ChemicalRecycling"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#matieres_premieres_MechanicalRecy -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;matieres_premieres_MechanicalRecy">
+        <rdfs:domain rdf:resource="&ontologie1;MechanicalRecycling"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#matricule_vehicle -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;matricule_vehicle">
+        <rdfs:domain rdf:resource="&ontologie1;vehicle"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#max_participants -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;max_participants">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#message_notif -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;message_notif">
+        <rdfs:domain rdf:resource="&ontologie1;Notification"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;name">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;vehicle"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameCategorywaste -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameCategorywaste">
+        <rdfs:domain rdf:resource="&ontologie1;CategoryWaste"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameCertification -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameCertification">
+        <rdfs:domain rdf:resource="&ontologie1;Certification"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameChannel -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameChannel">
+        <rdfs:domain rdf:resource="&ontologie1;Channel"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameDelivPers -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameDelivPers">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameMaterialWaste -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameMaterialWaste">
+        <rdfs:domain rdf:resource="&ontologie1;Material"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameParticipation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameParticipation">
+        <rdfs:domain rdf:resource="&ontologie1;Participation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameRecyclingMethod -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameRecyclingMethod">
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingMethod"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameService -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameService">
+        <rdfs:domain rdf:resource="&ontologie1;SpecialService"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameSubject -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameSubject">
+        <rdfs:domain rdf:resource="&ontologie1;Subject"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameTypeAwarness -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameTypeAwarness">
+        <rdfs:domain rdf:resource="&ontologie1;TypeAwareness"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nameTypeNotif -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nameTypeNotif">
+        <rdfs:domain rdf:resource="&ontologie1;TypeNotif"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name_Collection -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;name_Collection">
+        <rdfs:domain rdf:resource="&ontologie1;Collection"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name_collector -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;name_collector">
+        <rdfs:domain rdf:resource="&ontologie1;collector"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#nomTypeReclamation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;nomTypeReclamation">
+        <rdfs:domain rdf:resource="&ontologie1;TypeReclamation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#opening_hours -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;opening_hours">
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#organizer -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;organizer">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#password -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;password">
+        <rdfs:domain rdf:resource="&ontologie1;User"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#percentage -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;percentage">
+        <rdfs:domain rdf:resource="&ontologie1;RecycledContent"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phoneNumber -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;phoneNumber">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:domain rdf:resource="&ontologie1;DelivreyAgence"/>
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;Participation"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;collector"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phone_numberDelivPers -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;phone_numberDelivPers">
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#price -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;price">
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#produits_finaux -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;produits_finaux">
+        <rdfs:domain rdf:resource="&ontologie1;ChemicalRecycling"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#produits_finaux_MechanicalRecy -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;produits_finaux_MechanicalRecy">
+        <rdfs:domain rdf:resource="&ontologie1;MechanicalRecycling"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;quantity">
+        <rdfs:domain rdf:resource="&ontologie1;RecycledProduct"/>
+        <rdfs:domain rdf:resource="&ontologie1;Waste"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#role -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;role">
+        <rdfs:domain rdf:resource="&ontologie1;User"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#status -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;status">
+        <rdfs:domain rdf:resource="&ontologie1;Comment"/>
+        <rdfs:domain rdf:resource="&ontologie1;DeliveryPerson"/>
+        <rdfs:domain rdf:resource="&ontologie1;SpecialService"/>
+        <rdfs:domain rdf:resource="&ontologie1;vehicle"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#status_response -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;status_response">
+        <rdfs:domain rdf:resource="&ontologie1;Response"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#statut_Reclamation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;statut_Reclamation">
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#tags -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;tags">
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#temps_de_compostage -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;temps_de_compostage">
+        <rdfs:domain rdf:resource="&ontologie1;Composting"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#title -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;title">
+        <rdfs:domain rdf:resource="&ontologie1;Event"/>
+        <rdfs:domain rdf:resource="&ontologie1;Publication"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#titleTraining -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;titleTraining">
+        <rdfs:domain rdf:resource="&ontologie1;Training"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#title_notification -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;title_notification">
+        <rdfs:domain rdf:resource="&ontologie1;Notification"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#title_weeklyEvent -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;title_weeklyEvent">
+        <rdfs:domain rdf:resource="&ontologie1;WeeklyEvent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#titre_reclamation -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;titre_reclamation">
+        <rdfs:domain rdf:resource="&ontologie1;Reclamation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#total_quantity_available -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;total_quantity_available">
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#trainerTraining -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;trainerTraining">
+        <rdfs:domain rdf:resource="&ontologie1;Training"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#typeCenter -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;typeCenter">
+        <rdfs:domain rdf:resource="&ontologie1;DepotCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;RecyclingCenter"/>
+        <rdfs:domain rdf:resource="&ontologie1;SalesCenter"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#type_de_compostage -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;type_de_compostage">
+        <rdfs:domain rdf:resource="&ontologie1;Composting"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#type_de_procede -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;type_de_procede">
+        <rdfs:domain rdf:resource="&ontologie1;ChemicalRecycling"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#type_de_traitement -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;type_de_traitement">
+        <rdfs:domain rdf:resource="&ontologie1;MechanicalRecycling"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#username -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;username">
+        <rdfs:domain rdf:resource="&ontologie1;User"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#vehicle_model -->
+
+    <owl:DatatypeProperty rdf:about="&ontologie1;vehicle_model">
+        <rdfs:domain rdf:resource="&ontologie1;vehicle"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Admin -->
+
+    <owl:Class rdf:about="&ontologie1;Admin">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;organise"/>
+                <owl:onClass rdf:resource="&ontologie1;Training"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;publish"/>
+                <owl:onClass rdf:resource="&ontologie1;Publication"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;User"/>
+        <owl:disjointWith rdf:resource="&ontologie1;Client"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Category -->
+
+    <owl:Class rdf:about="&ontologie1;Category">
+        <rdfs:subClassOf rdf:resource="&ontologie1;RecycledProduct"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#CategoryWaste -->
+
+    <owl:Class rdf:about="&ontologie1;CategoryWaste">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Waste"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Centers -->
+
+    <owl:Class rdf:about="&ontologie1;Centers"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Certification -->
+
+    <owl:Class rdf:about="&ontologie1;Certification">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Training"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Channel -->
+
+    <owl:Class rdf:about="&ontologie1;Channel">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Notification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#ChemicalRecycling -->
+
+    <owl:Class rdf:about="&ontologie1;ChemicalRecycling">
+        <rdfs:subClassOf rdf:resource="&ontologie1;RecyclingMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Client -->
+
+    <owl:Class rdf:about="&ontologie1;Client">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;add"/>
+                <owl:onClass rdf:resource="&ontologie1;Waste"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;Send"/>
+                <owl:onClass rdf:resource="&ontologie1;Reclamation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;Participate_at"/>
+                <owl:onClass rdf:resource="&ontologie1;Event"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;User"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Collection -->
+
+    <owl:Class rdf:about="&ontologie1;Collection">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;Asigned_to"/>
+                <owl:onClass rdf:resource="&ontologie1;DepotCenter"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Comment -->
+
+    <owl:Class rdf:about="&ontologie1;Comment">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Composting -->
+
+    <owl:Class rdf:about="&ontologie1;Composting">
+        <rdfs:subClassOf rdf:resource="&ontologie1;RecyclingMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryPerson -->
+
+    <owl:Class rdf:about="&ontologie1;DeliveryPerson">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;working_in"/>
+                <owl:onClass rdf:resource="&ontologie1;DelivreyAgence"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;DelivreyAgence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DelivreyAgence -->
+
+    <owl:Class rdf:about="&ontologie1;DelivreyAgence">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_as_deliver"/>
+                <owl:onClass rdf:resource="&ontologie1;DeliveryPerson"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;offer"/>
+                <owl:onClass rdf:resource="&ontologie1;SpecialService"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;deliver_to"/>
+                <owl:onClass rdf:resource="&ontologie1;RecyclingCenter"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DepotCenter -->
+
+    <owl:Class rdf:about="&ontologie1;DepotCenter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;make_collection"/>
+                <owl:onClass rdf:resource="&ontologie1;Collection"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;distribute_waste_to"/>
+                <owl:onClass rdf:resource="&ontologie1;RecyclingCenter"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;choose"/>
+                <owl:onClass rdf:resource="&ontologie1;DelivreyAgence"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;collect_with"/>
+                <owl:onClass rdf:resource="&ontologie1;vehicle"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;Centers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event -->
+
+    <owl:Class rdf:about="&ontologie1;Event">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;hasFeedback"/>
+                <owl:onClass rdf:resource="&ontologie1;FeedBack"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_as_planning"/>
+                <owl:onClass rdf:resource="&ontologie1;Program"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#FeedBack -->
+
+    <owl:Class rdf:about="&ontologie1;FeedBack">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;added_from"/>
+                <owl:onClass rdf:resource="&ontologie1;User"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Material -->
+
+    <owl:Class rdf:about="&ontologie1;Material">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Waste"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#MechanicalRecycling -->
+
+    <owl:Class rdf:about="&ontologie1;MechanicalRecycling">
+        <rdfs:subClassOf rdf:resource="&ontologie1;RecyclingMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Notification -->
+
+    <owl:Class rdf:about="&ontologie1;Notification">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_type_notification"/>
+                <owl:onClass rdf:resource="&ontologie1;TypeNotif"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;send_by"/>
+                <owl:onClass rdf:resource="&ontologie1;Channel"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Participation -->
+
+    <owl:Class rdf:about="&ontologie1;Participation">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Program -->
+
+    <owl:Class rdf:about="&ontologie1;Program">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication -->
+
+    <owl:Class rdf:about="&ontologie1;Publication">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_typeof"/>
+                <owl:onClass rdf:resource="&ontologie1;TypeAwareness"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;target_the"/>
+                <owl:onClass rdf:resource="&ontologie1;Target"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Reclamation -->
+
+    <owl:Class rdf:about="&ontologie1;Reclamation">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_type_of"/>
+                <owl:onClass rdf:resource="&ontologie1;TypeReclamation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_the_response"/>
+                <owl:onClass rdf:resource="&ontologie1;Response"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledContent -->
+
+    <owl:Class rdf:about="&ontologie1;RecycledContent">
+        <rdfs:subClassOf rdf:resource="&ontologie1;RecycledProduct"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledProduct -->
+
+    <owl:Class rdf:about="&ontologie1;RecycledProduct">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;produced_from"/>
+                <owl:onClass rdf:resource="&ontologie1;RecyclingCenter"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;made_with"/>
+                <owl:onClass rdf:resource="&ontologie1;Category"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;Dispo_in"/>
+                <owl:onClass rdf:resource="&ontologie1;SalesCenter"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;has_recycling_pourcentage"/>
+                <owl:onClass rdf:resource="&ontologie1;RecycledContent"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecyclingCenter -->
+
+    <owl:Class rdf:about="&ontologie1;RecyclingCenter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;Use"/>
+                <owl:onClass rdf:resource="&ontologie1;RecyclingMethod"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;recieve"/>
+                <owl:onClass rdf:resource="&ontologie1;Waste"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;Centers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecyclingMethod -->
+
+    <owl:Class rdf:about="&ontologie1;RecyclingMethod"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Response -->
+
+    <owl:Class rdf:about="&ontologie1;Response">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Reclamation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#SalesCenter -->
+
+    <owl:Class rdf:about="&ontologie1;SalesCenter">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;sales"/>
+                <owl:onClass rdf:resource="&ontologie1;RecycledProduct"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;Centers"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#SpecialService -->
+
+    <owl:Class rdf:about="&ontologie1;SpecialService">
+        <rdfs:subClassOf rdf:resource="&ontologie1;DelivreyAgence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Subject -->
+
+    <owl:Class rdf:about="&ontologie1;Subject">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Training"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Target -->
+
+    <owl:Class rdf:about="&ontologie1;Target">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Training -->
+
+    <owl:Class rdf:about="&ontologie1;Training"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeAwareness -->
+
+    <owl:Class rdf:about="&ontologie1;TypeAwareness">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Publication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeNotif -->
+
+    <owl:Class rdf:about="&ontologie1;TypeNotif">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Notification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeReclamation -->
+
+    <owl:Class rdf:about="&ontologie1;TypeReclamation">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Reclamation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#User -->
+
+    <owl:Class rdf:about="&ontologie1;User">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;Write"/>
+                <owl:onClass rdf:resource="&ontologie1;Comment"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;recieve"/>
+                <owl:onClass rdf:resource="&ontologie1;Notification"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste -->
+
+    <owl:Class rdf:about="&ontologie1;Waste"/>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#WeeklyEvent -->
+
+    <owl:Class rdf:about="&ontologie1;WeeklyEvent">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collector -->
+
+    <owl:Class rdf:about="&ontologie1;collector">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;work_in"/>
+                <owl:onClass rdf:resource="&ontologie1;Collection"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontologie1;collect"/>
+                <owl:onClass rdf:resource="&ontologie1;Waste"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ontologie1;Collection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#vehicle -->
+
+    <owl:Class rdf:about="&ontologie1;vehicle">
+        <rdfs:subClassOf rdf:resource="&ontologie1;Collection"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Admin -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Admin">
+        <name>Admin</name>
+        <password>admin123</password>
+        <role>1</role>
+        <email>admin@gmail.com</email>
+        <username>admin</username>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#CategoryWaste2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;CategoryWaste2">
+        <nameCategorywaste>wood</nameCategorywaste>
+        <descriptionCategoryWaste>desc2</descriptionCategoryWaste>
+        <image>imageWaste.png</image>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Center1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Center1">
+        <typeCenter>1</typeCenter>
+        <address>sousse</address>
+        <phoneNumber>52444666</phoneNumber>
+        <manager_name>farah</manager_name>
+        <name>center1</name>
+        <closing_hours>11:00 PM</closing_hours>
+        <image>center1.jpg</image>
+        <opening_hours>08:00 AM</opening_hours>
+        <email>center1@gmail.com</email>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Certication1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Certication1">
+        <nameCertification>Certif1</nameCertification>
+        <dateCertification></dateCertification>
+        <dateCertification>15/10/2024</dateCertification>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Certification2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Certification2">
+        <dateCertification>25/09/2024</dateCertification>
+        <nameCertification>Certif2</nameCertification>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Composting1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Composting1">
+        <type_de_compostage>type1</type_de_compostage>
+        <temps_de_compostage>2 heures</temps_de_compostage>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Composting2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Composting2">
+        <temps_de_compostage>1 heure</temps_de_compostage>
+        <type_de_compostage>type2</type_de_compostage>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event1">
+        <image>image22.jpg</image>
+        <description>Event1 desciption</description>
+        <max_participants>100</max_participants>
+        <location>tunis</location>
+        <organizer>sirine</organizer>
+        <title>Event1</title>
+        <date>2024-12-02T10:00:00</date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event2">
+        <description>event hallowyn</description>
+        <image>image2.jpg</image>
+        <organizer>sarra</organizer>
+        <max_participants>20</max_participants>
+        <title>Event2</title>
+        <location>kef</location>
+        <date>2024-12-02T10:00:00</date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event260b75e5-534f-4b64-8506-30a7069036b8 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event260b75e5-534f-4b64-8506-30a7069036b8">
+        <rdf:type rdf:resource="&ontologie1;Event"/>
+        <image>http://example.com/image.jpg</image>
+        <title>third Event</title>
+        <date>Sun Nov 10 13:00:00 CET 2024</date>
+        <location>Online</location>
+        <description>This is the description of the third event.</description>
+        <organizer>Event Organizer</organizer>
+        <maxParticipants>100</maxParticipants>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event27d54ed9-0674-408f-b870-089917efdbf0 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event27d54ed9-0674-408f-b870-089917efdbf0">
+        <rdf:type rdf:resource="&ontologie1;Event"/>
+        <organizer>Event Organizer</organizer>
+        <location>Online</location>
+        <maxParticipants>100</maxParticipants>
+        <image>http://example.com/image.jpg</image>
+        <title>evet881</title>
+        <date>2024-11-10T12:00</date>
+        <description>This is the description of the third event.</description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event360b75e5-534f-4b64-8506-30a7069036b8 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event360b75e5-534f-4b64-8506-30a7069036b8">
+        <date>2024-12-02T10:00:00</date>
+        <title>event3</title>
+        <organizer>sarra</organizer>
+        <description>desc1</description>
+        <location>tunis</location>
+        <image>event.jpg</image>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event36cc007e-fcb5-435b-9bd0-781eec9022fd -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event36cc007e-fcb5-435b-9bd0-781eec9022fd">
+        <rdf:type rdf:resource="&ontologie1;Event"/>
+        <image>http://example.com/image.jpg</image>
+        <maxParticipants>100</maxParticipants>
+        <title>event881</title>
+        <description>This is the description of the third event.</description>
+        <location>Online</location>
+        <organizer>Event Organizer</organizer>
+        <date>2024-11-10T12:00</date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event4 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event4">
+        <organizer>farah</organizer>
+        <description>desc4</description>
+        <date>2025-12-02T10:00:00</date>
+        <image>event4.jpg</image>
+        <title>event4</title>
+        <location>tunis</location>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event87f0d30a-2485-4b6f-8868-781cf9a62c92 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Event87f0d30a-2485-4b6f-8868-781cf9a62c92">
+        <rdf:type rdf:resource="&ontologie1;Event"/>
+        <location>Online</location>
+        <date>2024-11-10T12:00</date>
+        <maxParticipants>100</maxParticipants>
+        <image>http://example.com/image.jpg</image>
+        <description>This is the description of the third event.</description>
+        <organizer>Event Organizer</organizer>
+        <title>evet11</title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Eventa62e4bc0-05f8-4deb-bb85-725120aee201 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Eventa62e4bc0-05f8-4deb-bb85-725120aee201">
+        <rdf:type rdf:resource="&ontologie1;Event"/>
+        <date>Sun Nov 10 13:00:00 CET 2024</date>
+        <title>first Event</title>
+        <location>Online</location>
+        <organizer>Event Organizer</organizer>
+        <maxParticipants>100</maxParticipants>
+        <image>http://example.com/image.jpg</image>
+        <description>This is the description of the third event.</description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Reclamation1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Reclamation1">
+        <statut_Reclamation>traité</statut_Reclamation>
+        <description_reclamation>réclamtion urgente</description_reclamation>
+        <dateReclamation>01/10/2024</dateReclamation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Reclamation2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;Reclamation2">
+        <description_reclamation>reclamation2</description_reclamation>
+        <dateReclamation>05/09/2024</dateReclamation>
+        <statut_Reclamation>non traitée</statut_Reclamation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledContent2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;RecycledContent2">
+        <percentage>50</percentage>
+        <name>prod2</name>
+        <content_description>this 50 % recycled</content_description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledContent_Prod -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;RecycledContent_Prod">
+        <percentage>80 </percentage>
+        <name>Prod1</name>
+        <content_description>80% recycled</content_description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecyclingMethod1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;RecyclingMethod1">
+        <nameRecyclingMethod>RecyclingMeth1</nameRecyclingMethod>
+        <descriptionRecyclingMethod>RecyclingMethod11111</descriptionRecyclingMethod>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecyclingMethod2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;RecyclingMethod2">
+        <descriptionRecyclingMethod>RecyclingMethod2</descriptionRecyclingMethod>
+        <nameRecyclingMethod>Recycling2</nameRecyclingMethod>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#categoryWaste1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;categoryWaste1">
+        <image>waste.jpg</image>
+        <nameCategorywaste>plastic</nameCategorywaste>
+        <descriptionCategoryWaste>desc1</descriptionCategoryWaste>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category_Prod1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;category_Prod1">
+        <name>wood</name>
+        <category_description>this is wood category</category_description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#center2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;center2">
+        <opening_hours>9:00 AM</opening_hours>
+        <image>center2.jpg</image>
+        <address>tunis</address>
+        <manager_name>chahd</manager_name>
+        <email>center2@gmail.com</email>
+        <typeCenter>2</typeCenter>
+        <name>center2</name>
+        <phoneNumber>58666644</phoneNumber>
+        <closing_hours>10:00 PM</closing_hours>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#channel1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;channel1">
+        <description_channel>envoi par sms</description_channel>
+        <nameChannel>sms</nameChannel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#channel2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;channel2">
+        <nameChannel>mailing</nameChannel>
+        <description_channel>envoi par mail</description_channel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;collection1">
+        <description_Collection>this is collection 1</description_Collection>
+        <date_of_collection>01/03/2025 09:00 AM</date_of_collection>
+        <name_Collection>collection1</name_Collection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;collection2">
+        <date_of_collection>02/11/2025 09:00 AM</date_of_collection>
+        <name_Collection>collection 2</name_Collection>
+        <description_Collection>this is collection 2</description_Collection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collector1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;collector1">
+        <name_Collection>collection1</name_Collection>
+        <address_collector>tunis</address_collector>
+        <name_collector>collector1</name_collector>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collector2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;collector2">
+        <name_collector>collector 2</name_collector>
+        <address_collector>sousse</address_collector>
+        <name_Collection>collection 2</name_Collection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#comment1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;comment1">
+        <title>pub1</title>
+        <likes>5</likes>
+        <status>lu</status>
+        <content>contentComment</content>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#comment2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;comment2">
+        <content>contentComment2</content>
+        <title>pub2</title>
+        <status>non lu</status>
+        <likes>7</likes>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#deliveryAgence1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;deliveryAgence1">
+        <phoneNumber>22555666</phoneNumber>
+        <closing_hours>11:00 PM</closing_hours>
+        <opening_hours>08:00 AM</opening_hours>
+        <name>deliveryAgence1</name>
+        <image>image3.jpg</image>
+        <address>tunis</address>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#deliveryAgence2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;deliveryAgence2">
+        <name>deliveryAgence2</name>
+        <closing_hours>11:00 PM</closing_hours>
+        <opening_hours>09:00 AM</opening_hours>
+        <image>image6.jpg</image>
+        <address>Bizerte</address>
+        <phoneNumber>26876444</phoneNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#depotCenter1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;depotCenter1">
+        <image>image.jpg</image>
+        <opening_hours>08:00 AM</opening_hours>
+        <address>tunis</address>
+        <phoneNumber>56888999</phoneNumber>
+        <name>depotCenter1</name>
+        <closing_hours>10:00 PM</closing_hours>
+        <manager_name>chahd </manager_name>
+        <capacity>2000</capacity>
+        <total_quantity_available>1000</total_quantity_available>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#depotCenter2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;depotCenter2">
+        <total_quantity_available>2500</total_quantity_available>
+        <image>image2.jpg</image>
+        <name>depotCenter2</name>
+        <capacity>3000</capacity>
+        <manager_name>sarra</manager_name>
+        <closing_hours>11:00 PM</closing_hours>
+        <address>Sousse</address>
+        <opening_hours>08:30 AM </opening_hours>
+        <phoneNumber>25666333</phoneNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#feedback1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;feedback1">
+        <ContentFeedback>good</ContentFeedback>
+        <title>Event1</title>
+        <dateCreationFeedback>06/11/2024 09:00 PM</dateCreationFeedback>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#feedback2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;feedback2">
+        <dateCreationFeedback>08/11/2024</dateCreationFeedback>
+        <ContentFeedback>good</ContentFeedback>
+        <title>Event 2</title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#notif1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;notif1">
+        <dateCreation_Notif>02/12/2024</dateCreation_Notif>
+        <title_notification>notif 1</title_notification>
+        <message_notif>message1</message_notif>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#notif2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;notif2">
+        <dateCreation_Notif>01/08/2024</dateCreation_Notif>
+        <message_notif>message2</message_notif>
+        <title_notification>notif 2</title_notification>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#publication1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;publication1">
+        <category>awarness</category>
+        <title>pub1</title>
+        <tags>tags1</tags>
+        <content>content pub1</content>
+        <description>description pub1</description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#publication2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;publication2">
+        <tags>tags2</tags>
+        <description>annonce </description>
+        <category>video</category>
+        <title>pub2</title>
+        <content>content pub 2</content>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#recycledProd1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;recycledProd1">
+        <description>desc prod1</description>
+        <image>prod1.jpg</image>
+        <price>200</price>
+        <quantity>2000</quantity>
+        <name>prod1</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#recycledProd2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;recycledProd2">
+        <description>desc prod 2</description>
+        <quantity>220</quantity>
+        <image>prod2.jpg</image>
+        <price>100</price>
+        <name>prod2</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#response1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;response1">
+        <status_response>statusRep1</status_response>
+        <dateResponse>10/06/2024</dateResponse>
+        <contenu_responseRec>contenuResp1</contenu_responseRec>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#response2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;response2">
+        <contenu_responseRec>contenu1</contenu_responseRec>
+        <dateResponse>08/05/2024</dateResponse>
+        <status_response>statusResp2</status_response>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#service1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;service1">
+        <status>active</status>
+        <additional_cost>200</additional_cost>
+        <description>service1</description>
+        <Experation_date>02/12/2025</Experation_date>
+        <name>deliveryAgence1</name>
+        <nameService>service1</nameService>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#service2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;service2">
+        <additional_cost>100</additional_cost>
+        <name>deliveryAgence2</name>
+        <status>inactive</status>
+        <Experation_date>01/02/2023</Experation_date>
+        <nameService>service2</nameService>
+        <description>serv2</description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#training1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;training1">
+        <descriptionTraining>training1</descriptionTraining>
+        <titleTraining>spring</titleTraining>
+        <durationTraining>2mois</durationTraining>
+        <trainerTraining>chahd</trainerTraining>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#training2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;training2">
+        <durationTraining>3mois</durationTraining>
+        <descriptionTraining>training2</descriptionTraining>
+        <trainerTraining>farah</trainerTraining>
+        <titleTraining>angular</titleTraining>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#user1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;user1">
+        <username>user1</username>
+        <name>user1</name>
+        <role>0</role>
+        <password>user1user1</password>
+        <email>user1@gmail.com</email>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#user2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;user2">
+        <name>user2</name>
+        <email>user2@gmail.com</email>
+        <password>user2user2</password>
+        <username>user2</username>
+        <role>0</role>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#waste1 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;waste1">
+        <image>waste.jpg</image>
+        <collection_location>tunis</collection_location>
+        <quantity>300</quantity>
+        <collection_date>01/10/2024 11:00 AM</collection_date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#waste2 -->
+
+    <owl:NamedIndividual rdf:about="&ontologie1;waste2">
+        <collection_date>10/05/2024</collection_date>
+        <image>imageWaste.png</image>
+        <collection_location>tunis el ghazela</collection_location>
+        <quantity>100</quantity>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

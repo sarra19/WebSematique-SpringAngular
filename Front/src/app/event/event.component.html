@@ -1,0 +1,40 @@
+<!-- event.component.html -->
+<div class="event-container">
+    <h1>List of Events</h1>
+  
+    <!-- Form for adding or editing an event -->
+    <div class="event-form">
+      <h3>{{ selectedEvent ? 'Edit Event' : 'Add New Event' }}</h3>
+      <form (ngSubmit)="selectedEvent ? updateEvent() : addEvent()">
+        <input [(ngModel)]="selectedEvent ? selectedEvent.title : newEvent.title" name="title" placeholder="Event Title" required>
+        <input [(ngModel)]="selectedEvent ? selectedEvent.description : newEvent.description" name="description" placeholder="Event Description" required>
+        <input [(ngModel)]="selectedEvent ? selectedEvent.date : newEvent.date" name="date" type="datetime-local" required>
+        <input [(ngModel)]="selectedEvent ? selectedEvent.location : newEvent.location" name="location" placeholder="Event Location" required>
+        <input [(ngModel)]="selectedEvent ? selectedEvent.organizer : newEvent.organizer" name="organizer" placeholder="Organizer" required>
+        <input [(ngModel)]="selectedEvent ? selectedEvent.image : newEvent.image" name="image" placeholder="Image URL" required>
+        
+        <button type="submit">{{ selectedEvent ? 'Update Event' : 'Add Event' }}</button>
+        <button *ngIf="selectedEvent" type="button" (click)="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+  
+    <!-- List of events -->
+    <div *ngIf="events.length > 0; else noEvents">
+      <div *ngFor="let event of events" class="event-card">
+        <h2>{{ event.title }}</h2>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <p><strong>Date:</strong> {{ event.date | date:'medium' }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Organizer:</strong> {{ event.organizer }}</p>
+        <img *ngIf="event.image" [src]="event.image" alt="{{ event.title }}" class="event-image">
+      
+        <button (click)="editEvent(event)">Edit</button>
+        <button (click)="deleteEvent(event.title)">Delete</button>
+      </div>
+    </div>
+  
+    <ng-template #noEvents>
+      <p>No events available.</p>
+    </ng-template>
+  </div>
+  
