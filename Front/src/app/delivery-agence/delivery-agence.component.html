@@ -1,1 +1,49 @@
-<p>delivery-agence works!</p>
+<div class="event-container">
+    <h1>List of Delivery Agencies</h1>
+
+    <!-- Button to show the add agency form -->
+    <button (click)="showAddForm()" class="add-agency-button">Add Agency</button>
+
+    <!-- Form to add or edit an agency -->
+    <div class="event-form" *ngIf="isAddFormVisible">
+        <h3>{{ selectedDeliveryAgence ? 'Edit Agency' : 'Add a New Agency' }}</h3>
+        <form (ngSubmit)="selectedDeliveryAgence ? updateDeliveryAgence() : addDeliveryAgence()">
+            <div class="input-row">
+                <input [(ngModel)]="selectedDeliveryAgence ? selectedDeliveryAgence.name : newDeliveryAgence.name" name="name" placeholder="Agency Name" required>
+                <input [(ngModel)]="selectedDeliveryAgence ? selectedDeliveryAgence.address : newDeliveryAgence.address" name="address" placeholder="Address" required>
+            </div>
+            <div class="input-row">
+                <input [(ngModel)]="selectedDeliveryAgence ? selectedDeliveryAgence.phoneNumber : newDeliveryAgence.phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                <input [(ngModel)]="selectedDeliveryAgence ? selectedDeliveryAgence.image : newDeliveryAgence.image" name="image" placeholder="Image URL" required>
+            </div>
+            <div class="input-row">
+                <input [(ngModel)]="selectedDeliveryAgence ? selectedDeliveryAgence.openingHours : newDeliveryAgence.openingHours" name="openingHours" placeholder="Opening Hours" required>
+                <input [(ngModel)]="selectedDeliveryAgence ? selectedDeliveryAgence.closingHours : newDeliveryAgence.closingHours" name="closingHours" placeholder="Closing Hours" required>
+            </div>
+
+            <button type="submit">{{ selectedDeliveryAgence ? 'Update' : 'Add Agency' }}</button>
+            <button *ngIf="selectedDeliveryAgence" type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+    </div>
+
+    <!-- List of delivery agencies -->
+    <div *ngIf="deliveryAgences.length > 0; else noAgences" class="cards-container">
+        <div *ngFor="let agence of deliveryAgences" class="event-card">
+            <img *ngIf="agence.image" [src]="agence.image" alt="{{ agence.name }}" class="event-image">
+            <h2>{{ agence.name }}</h2>
+            <p><strong>Address:</strong> {{ agence.address }}</p>
+            <p><strong>Phone Number:</strong> {{ agence.phoneNumber }}</p>
+            <p><strong>Opening Hours:</strong> {{ agence.openingHours }}</p>
+            <p><strong>Closing Hours:</strong> {{ agence.closingHours }}</p>
+            <div class="card-buttons">
+                <button class="edit" (click)="editDeliveryAgence(agence)">Edit</button>
+                <button class="delete" (click)="deleteDeliveryAgence(agence.name)">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noAgences>
+        <p>No delivery agencies available.</p>
+    </ng-template>
+</div>
+

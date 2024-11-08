@@ -12,6 +12,7 @@ export class EventComponent implements OnInit {
   events: Event[] = [];  // List of events
   newEvent: Event = new Event();  // New event to add
   selectedEvent: Event | null = null;  // Event selected for editing
+  feedbackFilteredEvents: any;
 
   constructor(private eventService: EventService) { }
 
@@ -43,14 +44,17 @@ export class EventComponent implements OnInit {
   }
 
   // Delete an event
-  deleteEvent(eventUri: string): void {
-    this.eventService.deleteEvent(eventUri).subscribe(response => {
-      console.log('Event deleted:', response);
-      this.getEvents();  // Refresh the event list
-    }, error => {
-      console.error('Error deleting event:', error);
-    });
-  }
+  // event.component.ts
+
+deleteEvent(eventUri: string): void {
+  this.eventService.deleteEvent(eventUri).subscribe(response => {
+    console.log('Event deleted:', response);
+    this.getEvents();  // Refresh the event list
+  }, error => {
+    console.error('Error deleting event:', error);
+  });
+}
+
 
   // Select an event for editing
   editEvent(event: Event): void {
@@ -69,9 +73,20 @@ export class EventComponent implements OnInit {
       });
     }
   }
-
   // Cancel editing and reset the form
   cancelEdit(): void {
     this.selectedEvent = null;  // Reset the selected event
+  }
+  filterEventsByFeedback(): void {
+    this.eventService.getEventsByFeedback().subscribe(
+      (response) => {
+        // Traitez la réponse ici, par exemple :
+        this.feedbackFilteredEvents = response;  // Mettez à jour le tableau des événements filtrés
+        console.log(this.feedbackFilteredEvents);
+      },
+      (error) => {
+        console.error('Error fetching events by feedback', error);
+      }
+    );
   }
 }

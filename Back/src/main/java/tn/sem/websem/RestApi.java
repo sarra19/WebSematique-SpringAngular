@@ -373,7 +373,7 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
     public ResponseEntity<String> deleteEvent(@RequestBody EventDto eventDto) {
         if (model != null) {
             try {
-                // Retrieve the URI of the event to delete
+                // Retrieve the URI of the event to delete from DTO
                 String eventUri = eventDto.getEvent();  // URI passed in the DTO
 
                 // Check that the event exists in the model
@@ -404,6 +404,7 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
             return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 /*
 @GetMapping("/getAllEvents")
@@ -462,4 +463,516 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
 
     // Inventory CRUD Operations
 
+    //HEDIL
+    /*crud delivery*/
+    @GetMapping("/getAllDeliveryAgencies")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<DeliveryAgenceDto>> getAllDeliveryAgencies() {
+        List<DeliveryAgenceDto> deliveryAgencies = new ArrayList<>();
+
+        if (model != null) {
+            try {
+                // Define the URI for DeliveryAgence type
+                Resource agencyType = model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryAgence");
+
+                // Define properties for agency attributes
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                Property addressProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address");
+                Property phoneProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phoneNumber");
+
+                Property openingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#openingHours");
+                Property closingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#closingHours");
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+
+                // Iterate over all NamedIndividuals
+                StmtIterator namedIndividuals = model.listStatements(null, RDF.type, (RDFNode) null);
+                while (namedIndividuals.hasNext()) {
+                    Statement statement = namedIndividuals.nextStatement();
+                    Resource agencyResource = statement.getSubject();
+
+                    // Check if it's a delivery agency based on URI or rdf:type
+                    if (agencyResource.getURI() != null && agencyResource.getURI().contains("DeliveryAgence")) {
+                        // Add the delivery agency to the list
+                        addDeliveryAgenceToList(agencyResource, nameProperty, addressProperty, phoneProperty,  openingProperty, closingProperty, imageProperty, deliveryAgencies);
+                    }
+                }
+
+                return new ResponseEntity<>(deliveryAgencies, HttpStatus.OK);
+            } catch (Exception e) {
+                System.err.println("Error retrieving delivery agencies: " + e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            System.err.println("Model is null - Error when reading model from ontology");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private void addDeliveryAgenceToList(Resource centerResource, Property nameProperty, Property addressProperty,
+                                         Property phoneProperty,
+                                         Property openingProperty, Property closingProperty, Property imageProperty,
+                                         List<DeliveryAgenceDto> deliveryAgencies) {
+        String name = getLiteralValue(centerResource, nameProperty);
+        String address = getLiteralValue(centerResource, addressProperty);
+        String phoneNumber = getLiteralValue(centerResource, phoneProperty);
+
+        String openingHours = getLiteralValue(centerResource, openingProperty);
+        String closingHours = getLiteralValue(centerResource, closingProperty);
+        String image = getLiteralValue(centerResource, imageProperty);
+
+        // Create a DeliveryAgenceDto instance and set its properties
+        DeliveryAgenceDto agencyDto = new DeliveryAgenceDto();
+        agencyDto.setAgence(centerResource.getURI().toString());
+        agencyDto.setName(name);
+        agencyDto.setAddress(address);
+        agencyDto.setPhoneNumber(phoneNumber);
+        agencyDto.setImage(image);
+        agencyDto.setOpeningHours(openingHours);
+        agencyDto.setClosingHours(closingHours);
+
+        deliveryAgencies.add(agencyDto);
+    }
+
+
+
+
+
+    @PostMapping("/addDeliveryAgence")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<ResponseMessage> addDeliveryAgence(@RequestBody DeliveryAgenceDto agencyDto) {
+        if (model != null) {
+            try {
+                // Generate a unique URI for the delivery agency
+                String agencyUri = "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryAgence" + UUID.randomUUID().toString();
+
+                // Create the Delivery Agency resource with the generated URI
+                Resource agencyResource = model.createResource(agencyUri);
+
+                // Define properties for the Delivery Agency entity
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                Property addressProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address");
+                Property phoneProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phoneNumber");
+                Property emailProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email");
+                Property managerProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#managerName");
+                Property openingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#openingHours");
+                Property closingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#closingHours");
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+
+                // Add RDF type for the Delivery Agency resource
+                model.add(agencyResource, RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryAgence"));
+
+                // Add properties to the resource
+                model.add(agencyResource, nameProperty, agencyDto.getName());
+                model.add(agencyResource, addressProperty, agencyDto.getAddress());
+                model.add(agencyResource, phoneProperty, agencyDto.getPhoneNumber());
+                model.add(agencyResource, openingProperty, agencyDto.getOpeningHours());
+                model.add(agencyResource, closingProperty, agencyDto.getClosingHours());
+                model.add(agencyResource, imageProperty, agencyDto.getImage());
+
+                // Save the model
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Return a structured JSON message
+                ResponseMessage responseMessage = new ResponseMessage("Delivery Agency added successfully", agencyUri);
+                return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new ResponseMessage("Error adding Delivery Agency: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/updateDeliveryAgence")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<String> updateDeliveryAgence(@RequestBody DeliveryAgenceDto deliveryAgenceDto) {
+        if (model != null) {
+            try {
+                // Récupérer la ressource DeliveryAgence en utilisant l'URI
+                Resource deliveryAgenceResource = model.getResource(deliveryAgenceDto.getAgence()); // URI de l'agence à mettre à jour
+
+                if (deliveryAgenceResource != null && deliveryAgenceResource.hasProperty(RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryAgence"))) {
+                    // Supprimer les anciennes valeurs
+                    Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                    Property addressProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address");
+                    Property phoneNumberProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phoneNumber");
+                    Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+                    Property openingHoursProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#openingHours");
+                    Property closingHoursProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#closingHours");
+
+                    // Supprimer les anciennes propriétés (si présentes)
+                    model.removeAll(deliveryAgenceResource, nameProperty, null);
+                    model.removeAll(deliveryAgenceResource, addressProperty, null);
+                    model.removeAll(deliveryAgenceResource, phoneNumberProperty, null);
+                    model.removeAll(deliveryAgenceResource, imageProperty, null);
+                    model.removeAll(deliveryAgenceResource, openingHoursProperty, null);
+                    model.removeAll(deliveryAgenceResource, closingHoursProperty, null);
+
+                    // Ajouter les nouvelles valeurs
+                    model.add(deliveryAgenceResource, nameProperty, deliveryAgenceDto.getName());
+                    model.add(deliveryAgenceResource, addressProperty, deliveryAgenceDto.getAddress());
+                    model.add(deliveryAgenceResource, phoneNumberProperty, deliveryAgenceDto.getPhoneNumber());
+                    model.add(deliveryAgenceResource, imageProperty, deliveryAgenceDto.getImage());
+                    model.add(deliveryAgenceResource, openingHoursProperty, deliveryAgenceDto.getOpeningHours());
+                    model.add(deliveryAgenceResource, closingHoursProperty, deliveryAgenceDto.getClosingHours());
+
+                    // Sauvegarder le modèle
+                    JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                    return new ResponseEntity<>("Delivery agency updated successfully: " + deliveryAgenceDto.getAgence(), HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Delivery agency not found", HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity<>("Error updating Delivery Agency: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("/deleteDeliveryAgence")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<String> deleteDeliveryAgence(@RequestBody DeliveryAgenceDto deliveryAgenceDto) {
+        if (model != null) {
+            try {
+                // Récupérer l'URI de l'agence à supprimer
+                String agenceUri = deliveryAgenceDto.getAgence();  // URI passée dans le DTO
+
+                // Vérifier que l'agence existe dans le modèle
+                Resource deliveryAgenceResource = model.getResource(agenceUri);
+
+                if (deliveryAgenceResource != null) {
+                    // Vérifier que la ressource a le type DeliveryAgence
+                    if (deliveryAgenceResource.hasProperty(RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryAgence")) ||
+                            (deliveryAgenceResource.getURI() != null && deliveryAgenceResource.getURI().contains("DeliveryAgence"))) {
+
+                        // Supprimer toutes les propriétés associées à l'agence
+                        model.removeAll(deliveryAgenceResource, null, null);  // Supprime toutes les propriétés de cette ressource
+
+                        // Sauvegarder le modèle après la suppression
+                        JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                        return new ResponseEntity<>("Delivery agency deleted successfully: " + agenceUri, HttpStatus.OK);
+                    } else {
+                        return new ResponseEntity<>("Delivery agency not found or invalid type", HttpStatus.NOT_FOUND);
+                    }
+                } else {
+                    return new ResponseEntity<>("Delivery agency not found", HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity<>("Error deleting Delivery Agency: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // SIRINE
+    //Crud Waste
+    @GetMapping("/getAllWaste")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<WasteDto>> getAllWaste() {
+        List<WasteDto> wastes = new ArrayList<>();
+
+        if (model != null) {
+            try {
+                Resource wasteType = model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste");
+
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+                Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
+                Property dateProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_date");
+                Property locationProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_location");
+
+                StmtIterator wasteIterator = model.listStatements(null, RDF.type, wasteType);
+                while (wasteIterator.hasNext()) {
+                    Statement stmt = wasteIterator.nextStatement();
+                    Resource wasteResource = stmt.getSubject();
+
+                    // Extract Waste properties and add to list
+                    WasteDto wasteDto = new WasteDto();
+                    wasteDto.setImage(wasteResource.getProperty(imageProperty).getString());
+                    wasteDto.setQuantity(Integer.parseInt(wasteResource.getProperty(quantityProperty).getString()));
+                    wasteDto.setCollection_date(LocalDateTime.parse(wasteResource.getProperty(dateProperty).getString()));
+                    wasteDto.setCollection_location(wasteResource.getProperty(locationProperty).getString());
+
+                    wastes.add(wasteDto);
+                    addWasteToList(wasteResource,imageProperty, quantityProperty, dateProperty, locationProperty, wastes);
+
+                }
+
+                return new ResponseEntity<>(wastes, HttpStatus.OK);
+            } catch (Exception e) {
+                System.err.println("Error retrieving wastes: " + e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    private void addWasteToList(Resource wasteResource, Property imageProperty, Property quantityProperty,
+                                Property collectionDateProperty, Property collectionLocationProperty,
+                                List<WasteDto> wastes) {
+
+        // Extract values for waste properties
+        String image = getLiteralValue(wasteResource, imageProperty);
+        String quantityString = getLiteralValue(wasteResource, quantityProperty);
+        String collectionDateString = getLiteralValue(wasteResource, collectionDateProperty);
+        String collectionLocation = getLiteralValue(wasteResource, collectionLocationProperty);
+
+        // Create a WasteDto instance and set its properties
+        WasteDto wasteDto = new WasteDto();
+        wasteDto.setWaste(wasteResource.getURI()); // Corrected this line
+
+        wasteDto.setImage(image);
+
+        // Parse quantity safely
+        try {
+            wasteDto.setQuantity(quantityString != null ? Integer.parseInt(quantityString) : 0);
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing quantity: " + quantityString);
+            wasteDto.setQuantity(0);  // Set to 0 if the quantity cannot be parsed
+        }
+
+        // Parse collection date safely
+        if (collectionDateString != null) {
+            try {
+                wasteDto.setCollection_date(LocalDateTime.parse(collectionDateString, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            } catch (DateTimeParseException e) {
+                System.err.println("Error parsing collection date: " + collectionDateString);
+                wasteDto.setCollection_date(null);  // Set to null if the date cannot be parsed
+            }
+        } else {
+            wasteDto.setCollection_date(null);
+        }
+
+        wasteDto.setCollection_location(collectionLocation);
+
+        // Add the WasteDto to the list
+        wastes.add(wasteDto);
+    }
+
+
+    @PostMapping("/addWaste")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<ResponseMessage> addWaste(@RequestBody WasteDto wasteDto) {
+        if (model != null) {
+            try {
+                // Generate a unique URI for the waste
+                String wasteUri = "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste" + UUID.randomUUID().toString();
+                Resource wasteResource = model.createResource(wasteUri);
+
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+                Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
+                Property dateProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_date");
+                Property locationProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_location");
+
+                // Add the waste data to the model
+                model.add(wasteResource, RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste"));
+                model.add(wasteResource, imageProperty, wasteDto.getImage());
+                model.add(wasteResource, quantityProperty, Integer.toString(wasteDto.getQuantity()));
+                model.add(wasteResource, dateProperty, wasteDto.getCollection_date().toString());
+                model.add(wasteResource, locationProperty, wasteDto.getCollection_location());
+
+                // Save the model to the file
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Return a successful response with the waste URI
+                ResponseMessage responseMessage = new ResponseMessage("Waste added successfully", wasteUri);
+                return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
+
+            } catch (Exception e) {
+                // Return an error response if something goes wrong
+                ResponseMessage responseMessage = new ResponseMessage("Error adding Waste: " + e.getMessage(),  null);
+                return new ResponseEntity<>(responseMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            // Return an error response if the model is null
+            ResponseMessage responseMessage = new ResponseMessage("Error when reading model from ontology",  null);
+            return new ResponseEntity<>(responseMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/updateWaste")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<String> updateWaste(@RequestBody WasteDto wasteDto) {
+        if (model != null) {
+            try {
+                Resource wasteResource = model.getResource(wasteDto.getImage()); // Assuming image URI as unique identifier
+
+                if (wasteResource != null && wasteResource.hasProperty(RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste"))) {
+                    Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+                    Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
+                    Property dateProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_date");
+                    Property locationProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_location");
+
+                    model.removeAll(wasteResource, imageProperty, null);
+                    model.removeAll(wasteResource, quantityProperty, null);
+                    model.removeAll(wasteResource, dateProperty, null);
+                    model.removeAll(wasteResource, locationProperty, null);
+
+                    model.add(wasteResource, imageProperty, wasteDto.getImage());
+                    model.add(wasteResource, quantityProperty, Integer.toString(wasteDto.getQuantity()));
+                    model.add(wasteResource, dateProperty, wasteDto.getCollection_date().toString());
+                    model.add(wasteResource, locationProperty, wasteDto.getCollection_location());
+
+                    JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                    return new ResponseEntity<>("Waste updated successfully: " + wasteDto.getImage(), HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Waste not found", HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity<>("Error updating Waste: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("/deleteWaste")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<String> deleteWaste(@RequestBody WasteDto wasteDto) {
+        if (model != null) {
+            try {
+                String wasteUri = wasteDto.getWaste();
+
+                Resource wasteResource = model.getResource(wasteUri);
+
+                if (wasteResource != null && wasteResource.hasProperty(RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste"))) {
+                    model.removeAll(wasteResource, null, null);
+                    JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                    return new ResponseEntity<>("Waste deleted successfully: " + wasteUri, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Waste not found", HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity<>("Error deleting Waste: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
+        }}
+
+
+                                          //FARAH//
+
+    @GetMapping("/getAllCenters")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<CentersDto>> getAllCenters() {
+        List<CentersDto> centers = new ArrayList<>();
+
+        if (model != null) {
+            try {
+                // Define the URI for Center type
+                Resource centerType = model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Center");
+
+                // Define properties for center attributes
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                Property addressProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address");
+                Property phoneProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phoneNumber");
+                Property emailProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email");
+                Property managerProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#managerName");
+                Property openingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#openingHours");
+                Property closingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#closingHours");
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+
+                // Iterate over all NamedIndividuals
+                StmtIterator namedIndividuals = model.listStatements(null, RDF.type, (RDFNode) null);
+                while (namedIndividuals.hasNext()) {
+                    Statement statement = namedIndividuals.nextStatement();
+                    Resource centerResource = statement.getSubject();
+
+                    // Check if it's a center based on URI or rdf:type
+                    if (centerResource.getURI() != null && centerResource.getURI().contains("Center")) {
+                        // Add the center to the list
+                        addCenterToList(centerResource, nameProperty, addressProperty, phoneProperty, emailProperty,
+                                managerProperty, openingProperty, closingProperty, imageProperty, centers);
+                    }
+                }
+
+                return new ResponseEntity<>(centers, HttpStatus.OK);
+            } catch (Exception e) {
+                System.err.println("Error retrieving centers: " + e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            System.err.println("Model is null - Error when reading model from ontology");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private void addCenterToList(Resource centerResource, Property nameProperty, Property addressProperty,
+                                 Property phoneProperty, Property emailProperty, Property managerProperty,
+                                 Property openingProperty, Property closingProperty, Property imageProperty,
+                                 List<CentersDto> centers) {
+        String name = getLiteralValue(centerResource, nameProperty);
+        String address = getLiteralValue(centerResource, addressProperty);
+        String phoneNumber = getLiteralValue(centerResource, phoneProperty);
+        String email = getLiteralValue(centerResource, emailProperty);
+        String managerName = getLiteralValue(centerResource, managerProperty);
+        String openingHours = getLiteralValue(centerResource, openingProperty);
+        String closingHours = getLiteralValue(centerResource, closingProperty);
+        String image = getLiteralValue(centerResource, imageProperty);
+
+        // Create a CentersDto instance and set its properties
+        CentersDto centerDto = new CentersDto();
+        centerDto.setCenterUri(centerResource.getURI());
+        centerDto.setName(name);
+        centerDto.setAddress(address);
+        centerDto.setPhoneNumber(phoneNumber);
+        centerDto.setEmail(email);
+        centerDto.setManagerName(managerName);
+        centerDto.setOpeningHours(openingHours);
+        centerDto.setClosingHours(closingHours);
+        centerDto.setImage(image);
+
+        centers.add(centerDto);
+    }
+
+    @PostMapping("/addCenter")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<ResponseMessage> addCenter(@RequestBody CentersDto centerDto) {
+        if (model != null) {
+            try {
+                // Generate a unique URI for the center
+                String centerUri = "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Center" + UUID.randomUUID().toString();
+
+                // Create the Center resource with the generated URI
+                Resource centerResource = model.createResource(centerUri);
+
+                // Define properties for the Center entity
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                Property addressProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#address");
+                Property phoneProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#phoneNumber");
+                Property emailProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email");
+                Property managerProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#managerName");
+                Property openingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#openingHours");
+                Property closingProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#closingHours");
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+
+                // Add RDF type for the Center resource
+                model.add(centerResource, RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Center"));
+
+                // Add properties to the resource
+                model.add(centerResource, nameProperty, centerDto.getName());
+                model.add(centerResource, addressProperty, centerDto.getAddress());
+                model.add(centerResource, phoneProperty, centerDto.getPhoneNumber());
+                model.add(centerResource, emailProperty, centerDto.getEmail());
+                model.add(centerResource, managerProperty, centerDto.getManagerName());
+                model.add(centerResource, openingProperty, centerDto.getOpeningHours());
+                model.add(centerResource, closingProperty, centerDto.getClosingHours());
+                model.add(centerResource, imageProperty, centerDto.getImage());
+
+                // Save the model
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Return a structured JSON message
+                ResponseMessage responseMessage = new ResponseMessage("Center added successfully", centerUri);
+                return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new ResponseMessage("Error adding Center: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+

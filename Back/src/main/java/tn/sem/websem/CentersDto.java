@@ -11,9 +11,17 @@ public class CentersDto {
     private String managerName;
     private String openingHours;
     private String closingHours;
-
+    private String CenterUri;
     // Getters et setters pour chaque attribut
 
+
+    public String getCenterUri() {
+        return CenterUri;
+    }
+
+    public void setCenterUri(String centerUri) {
+        CenterUri = centerUri;
+    }
 
     public String getImage() {
         return image;

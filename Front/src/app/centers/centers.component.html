@@ -1,0 +1,207 @@
+//html<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Centres</title>
+    <style>
+        /* Container principal */
+        .center-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Titre principal */
+        .center-container h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Formulaire de centre */
+        .center-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        /* Titre de formulaire */
+        .center-form h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        /* Champs du formulaire */
+        .center-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* Bouton de soumission du formulaire */
+        .center-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .center-form button:hover {
+            background-color: #45a049;
+        }
+
+        /* Bouton Annuler */
+        .center-form button[type="button"] {
+            background-color: #f44336;
+        }
+
+        .center-form button[type="button"]:hover {
+            background-color: #e53935;
+        }
+
+        /* Liste des centres */
+        .center-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .center-card h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .center-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .center-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .center-card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .center-card button:hover {
+            background-color: #45a049;
+        }
+
+        .center-card button:nth-child(2) {
+            background-color: #f44336;
+        }
+
+        .center-card button:nth-child(2):hover {
+            background-color: #e53935;
+        }
+
+        /* Grille des centres */
+        .center-container .center-card {
+            display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .center-container .center-card:last-child {
+            margin-right: 0;
+        }
+
+        /* No centers message */
+        .noCenters {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center-container">
+        <h1>List of Centers</h1>
+
+        <!-- Form for adding or editing a center -->
+        <div class="center-form">
+            <h3>{{ selectedCenter ? 'Edit Center' : 'Add New Center' }}</h3>
+            <form (ngSubmit)="selectedCenter ? updateCenter() : addCenter()">
+                <input [(ngModel)]="selectedCenter ? selectedCenter.name : newCenter.name" name="name"
+                    placeholder="Center Name" required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.address : newCenter.address" name="address"
+                    placeholder="Address" required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.phoneNumber : newCenter.phoneNumber" name="phoneNumber"
+                    placeholder="Phone Number" required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.email : newCenter.email" name="email" placeholder="Email"
+                    required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.managerName : newCenter.managerName" name="managerName"
+                    placeholder="Manager Name" required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.openingHours : newCenter.openingHours" name="openingHours"
+                    type="time" required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.closingHours : newCenter.closingHours" name="closingHours"
+                    type="time" required>
+                <input [(ngModel)]="selectedCenter ? selectedCenter.image : newCenter.image" name="image" placeholder="Image URL">
+
+                <button type="submit">{{ selectedCenter ? 'Update Center' : 'Add Center' }}</button>
+                <button *ngIf="selectedCenter" type="button" (click)="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+
+        <!-- List of centers -->
+        <div *ngIf="centers.length > 0; else noCenters">
+            <div *ngFor="let center of centers" class="center-card">
+                <h2>{{ center.name }}</h2>
+                <p><strong>Address:</strong> {{ center.address }}</p>
+                <p><strong>Phone Number:</strong> {{ center.phoneNumber }}</p>
+                <p><strong>Email:</strong> {{ center.email }}</p>
+                <p><strong>Manager Name:</strong> {{ center.managerName }}</p>
+                <p><strong>Opening Hours:</strong> {{ center.openingHours }}</p>
+                <p><strong>Closing Hours:</strong> {{ center.closingHours }}</p>
+                <img *ngIf="center.image" [src]="center.image" alt="{{ center.name }}" class="center-image">
+
+                <button (click)="editCenter(center)">Edit</button>
+                <button (click)="deleteCenter(center.name)">Delete</button>
+            </div>
+        </div>
+
+        <ng-template #noCenters>
+            <p>No centers available.</p>
+        </ng-template>
+    </div>
+
+</body>
+
+</html>

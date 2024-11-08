@@ -3,10 +3,14 @@ public class ResponseMessage {
     private String message;
     private String eventUri;
 
+
+
     // Constructeurs, getters et setters
-    public ResponseMessage(String message, String eventUri) {
+    public ResponseMessage(String message, String eventUri ) {
         this.message = message;
         this.eventUri = eventUri;
+
+
     }
 
     public String getMessage() {
@@ -24,4 +28,6 @@ public class ResponseMessage {
     public void setEventUri(String eventUri) {
         this.eventUri = eventUri;
     }
+
+
 }

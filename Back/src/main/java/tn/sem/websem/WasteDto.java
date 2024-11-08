@@ -20,7 +20,15 @@ public class WasteDto {
     // Getters and Setters
 
 
+    private String  waste;
 
+    public String getWaste() {
+        return waste;
+    }
+
+    public void setWaste(String waste) {
+        this.waste = waste;
+    }
 
     public String getImage() {
         return image;

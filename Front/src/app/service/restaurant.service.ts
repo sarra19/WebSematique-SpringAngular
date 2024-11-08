@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Restaurant } from '../models/reclamation'; // Adjust the path as necessary
-import { restclass } from '../models/centers'; // Adjust the path as necessary
+import { restclass } from '../models/center'; // Adjust the path as necessary
 
 
 @Injectable({

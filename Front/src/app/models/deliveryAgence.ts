@@ -1,5 +1,5 @@
 
-export class deliveryAgence {
+export class DeliveryAgence {
     name!: string;
     address!: string;
     phoneNumber!: string;

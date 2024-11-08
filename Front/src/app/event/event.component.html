@@ -1,40 +1,200 @@
 <!-- event.component.html -->
 <div class="event-container">
-    <h1>List of Events</h1>
-  
-    <!-- Form for adding or editing an event -->
-    <div class="event-form">
-      <h3>{{ selectedEvent ? 'Edit Event' : 'Add New Event' }}</h3>
-      <form (ngSubmit)="selectedEvent ? updateEvent() : addEvent()">
-        <input [(ngModel)]="selectedEvent ? selectedEvent.title : newEvent.title" name="title" placeholder="Event Title" required>
-        <input [(ngModel)]="selectedEvent ? selectedEvent.description : newEvent.description" name="description" placeholder="Event Description" required>
-        <input [(ngModel)]="selectedEvent ? selectedEvent.date : newEvent.date" name="date" type="datetime-local" required>
-        <input [(ngModel)]="selectedEvent ? selectedEvent.location : newEvent.location" name="location" placeholder="Event Location" required>
-        <input [(ngModel)]="selectedEvent ? selectedEvent.organizer : newEvent.organizer" name="organizer" placeholder="Organizer" required>
-        <input [(ngModel)]="selectedEvent ? selectedEvent.image : newEvent.image" name="image" placeholder="Image URL" required>
-        
-        <button type="submit">{{ selectedEvent ? 'Update Event' : 'Add Event' }}</button>
-        <button *ngIf="selectedEvent" type="button" (click)="cancelEdit()">Cancel</button>
-      </form>
-    </div>
-  
-    <!-- List of events -->
-    <div *ngIf="events.length > 0; else noEvents">
-      <div *ngFor="let event of events" class="event-card">
-        <h2>{{ event.title }}</h2>
-        <p><strong>Description:</strong> {{ event.description }}</p>
-        <p><strong>Date:</strong> {{ event.date | date:'medium' }}</p>
-        <p><strong>Location:</strong> {{ event.location }}</p>
-        <p><strong>Organizer:</strong> {{ event.organizer }}</p>
-        <img *ngIf="event.image" [src]="event.image" alt="{{ event.title }}" class="event-image">
+  <h1>List of Events</h1>
+  <!-- Filter Button -->
+  <button type="button" (click)="filterEventsByFeedback()">Filter by Feedback</button>
+
+  <!-- Form for adding or editing an event -->
+  <div class="event-form">
+    <h3>{{ selectedEvent ? 'Edit Event' : 'Add New Event' }}</h3>
+    <form (ngSubmit)="selectedEvent ? updateEvent() : addEvent()">
+      <input [(ngModel)]="selectedEvent ? selectedEvent.title : newEvent.title" name="title" placeholder="Event Title" required>
+      <input [(ngModel)]="selectedEvent ? selectedEvent.description : newEvent.description" name="description" placeholder="Event Description" required>
+      <input [(ngModel)]="selectedEvent ? selectedEvent.date : newEvent.date" name="date" type="datetime-local" required>
+      <input [(ngModel)]="selectedEvent ? selectedEvent.location : newEvent.location" name="location" placeholder="Event Location" required>
+      <input [(ngModel)]="selectedEvent ? selectedEvent.organizer : newEvent.organizer" name="organizer" placeholder="Organizer" required>
+      <input [(ngModel)]="selectedEvent ? selectedEvent.image : newEvent.image" name="image" placeholder="Image URL" required>
       
-        <button (click)="editEvent(event)">Edit</button>
-        <button (click)="deleteEvent(event.title)">Delete</button>
-      </div>
-    </div>
-  
-    <ng-template #noEvents>
-      <p>No events available.</p>
-    </ng-template>
+      <button type="submit">{{ selectedEvent ? 'Update Event' : 'Add Event' }}</button>
+      <button *ngIf="selectedEvent" type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
   </div>
-  
+
+  <!-- List of events -->
+  <div *ngIf="events.length > 0; else noEvents">
+    <div *ngFor="let event of events" class="event-card">
+      <h2>{{ event.title }}</h2>
+      <p><strong>Description:</strong> {{ event.description }}</p>
+      <p><strong>Date:</strong> {{ event.date | date:'medium' }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      <p><strong>Organizer:</strong> {{ event.organizer }}</p>
+      <img *ngIf="event.image" [src]="event.image" alt="{{ event.title }}" class="event-image">
+    
+      <button (click)="editEvent(event)">Edit</button>
+      <button (click)="deleteEvent(event.title)">Delete</button>
+    </div>
+  </div>
+
+  <ng-template #noEvents>
+    <p>No events available.</p>
+  </ng-template>
+</div>
+
+<!-- event.component.css -->
+<style>
+  /* General styles */
+  .event-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    color: #007BFF;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  /* Form styles */
+  .event-form {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .event-form input:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  button[type="button"] {
+    background-color: #ddd;
+    color: #333;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+
+  button[type="button"]:hover {
+    background-color: #bbb;
+  }
+
+  /* List of events */
+  .event-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-card h2 {
+    color: #007BFF;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .event-card p {
+    color: #555;
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+
+  .event-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  .event-card button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+  }
+
+  .event-card button:hover {
+    background-color: #218838;
+  }
+
+  .event-card button:nth-child(2) {
+    background-color: #dc3545;
+  }
+
+  .event-card button:nth-child(2):hover {
+    background-color: #c82333;
+  }
+
+  /* No events available */
+  ng-template {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #999;
+  }
+
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .event-container {
+      padding: 15px;
+    }
+
+    .event-form {
+      padding: 15px;
+    }
+
+    .event-card {
+      padding: 15px;
+    }
+
+    button[type="submit"], button[type="button"], .event-card button {
+      width: 100%;
+    }
+  }
+</style>

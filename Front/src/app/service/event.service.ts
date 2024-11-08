@@ -22,12 +22,17 @@ export class EventService {
   }
 
   // Méthode pour supprimer un événement
-  deleteEvent(eventUri: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/deleteEvent`, { body: { event: eventUri } });
-  }
+ // event.service.ts
+deleteEvent(eventUri: string): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/deleteEvent`, { body: { event: eventUri } });
+}
 
   // Méthode pour mettre à jour un événement
   updateEvent(event: Event): Observable<any> {
-    return this.http.put(`${this.apiUrl}/updateEvent`, event);
+    return this.http.put(`${this.apiUrl}/updateEvent`, event, { responseType: 'text' as 'json' });
   }
+    // Méthode pour récupérer les événements filtrés par feedback
+    getEventsByFeedback(): Observable<any> {
+      return this.http.get(`${this.apiUrl}/getEventByFeedback`);
+    }
 }

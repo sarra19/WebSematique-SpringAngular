@@ -13,6 +13,14 @@ public class DeliveryAgenceDto {
     private String openingHours;
 
     private String closingHours;
+    private String agence; //uri
+
+    public DeliveryAgenceDto(String agenceUri, String name, String address, String phoneNumber, String image, String openingHours, String closingHours) {
+    }
+
+    public DeliveryAgenceDto() {
+
+    }
 
     public String getName() {
         return name;
@@ -61,4 +69,13 @@ public class DeliveryAgenceDto {
     public void setClosingHours(String closingHours) {
         this.closingHours = closingHours;
     }
+
+    public String getAgence() {
+        return agence;
+    }
+
+    public void setAgence(String agence) {
+        this.agence = agence;
+    }
+    
 }
