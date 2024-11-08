@@ -1,11 +1,21 @@
 PREFIX ex: <http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?name
-WHERE {
-  ?RecycledProduct rdf:type ex:RecycledProduct .  # Select all instances of Event
-  ?RecycledProduct ex:percentage ?percentage .  # Content feedback of the event
-  ?RecycledProduct ex:name ?name .  # Title of the event
+SELECT ?name ?description ?quantity ?price ?image ?recycledContent ?recycledPercentage WHERE {
+  ex:recycledProd1 rdf:type ex:RecycledProduct .
 
-  FILTER (STR(?percentage) = "50")  # Filter for "good" content feedback
+  # Data property assertions
+  ex:recycledProd1 ex:name ?name .
+  ex:recycledProd1 ex:description ?description .
+  ex:recycledProd1 ex:quantity ?quantity .
+  ex:recycledProd1 ex:price ?price .
+  ex:recycledProd1 ex:image ?image .
+
+  # Object property assertions for recycled content
+  ex:recycledProd1 ex:made_with ?recycledContent .
+  ex:recycledProd1 ex:has_recycling_pourcentage ?recycledContent .
+
+  # Retrieve the recycling percentage of the RecycledContent2 resource
+  ?recycledContent ex:percentage ?recycledPercentage .
 }

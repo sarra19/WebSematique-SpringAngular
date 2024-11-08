@@ -1,1 +1,67 @@
-<p>recycled-product works!</p>
+<div class="recycled-product-container">
+    <h1 class="text-center">List of Recycled Products</h1>
+    <div class="percentage-filter">
+        <button (click)="getProductsFiltre()" class="btn-filter">
+            Filter by Percentage
+        </button>
+    </div>
+  
+    <!-- Form for adding or editing a recycled product -->
+    <div class="recycled-product-form">
+        <h3>{{ selectedProduct ? 'Edit Recycled Product' : 'Add New Recycled Product' }}</h3>
+        <form (ngSubmit)="selectedProduct ? updateProduct() : addProduct()">
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input [(ngModel)]="selectedProduct ? selectedProduct.name : newProduct.name" 
+                       name="name" id="name" placeholder="Product Name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Product Description</label>
+                <input [(ngModel)]="selectedProduct ? selectedProduct.description : newProduct.description" 
+                       name="description" id="description" placeholder="Product Description" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input [(ngModel)]="selectedProduct ? selectedProduct.price : newProduct.price" 
+                       name="price" id="price" type="number" placeholder="Price" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input [(ngModel)]="selectedProduct ? selectedProduct.quantity : newProduct.quantity" 
+                       name="quantity" id="quantity" type="number" placeholder="Quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image URL</label>
+                <input [(ngModel)]="selectedProduct ? selectedProduct.image : newProduct.image" 
+                       name="image" id="image" placeholder="Image URL" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    {{ selectedProduct ? 'Update Product' : 'Add Product' }}
+                </button>
+                <button *ngIf="selectedProduct" type="button" (click)="cancelEdit()" class="btn-cancel">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+  
+    <!-- List of recycled products -->
+    <div *ngIf="products.length > 0; else noProducts">
+        <div *ngFor="let product of products" class="recycled-product-card">
+            <h2>{{ product.name }}</h2>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+            <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}" class="recycled-product-image">
+            <div class="action-buttons">
+                <button (click)="editProduct(product)" class="btn-edit">Edit</button>
+                <button (click)="deleteProduct(product.productUri)" class="btn-delete">Delete</button>
+            </div>
+        </div>
+    </div>
+  
+    <ng-template #noProducts>
+        <p class="text-center">No recycled products available.</p>
+    </ng-template>
+</div>

@@ -668,6 +668,7 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
 
     // SIRINE
     //Crud Waste
+// CRUD Operations
     @GetMapping("/getAllWaste")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<WasteDto>> getAllWaste() {
@@ -689,14 +690,14 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
 
                     // Extract Waste properties and add to list
                     WasteDto wasteDto = new WasteDto();
+                    wasteDto.setWasteUri(wasteResource.getURI()); // Set the URI correctly
                     wasteDto.setImage(wasteResource.getProperty(imageProperty).getString());
                     wasteDto.setQuantity(Integer.parseInt(wasteResource.getProperty(quantityProperty).getString()));
                     wasteDto.setCollection_date(LocalDateTime.parse(wasteResource.getProperty(dateProperty).getString()));
                     wasteDto.setCollection_location(wasteResource.getProperty(locationProperty).getString());
 
                     wastes.add(wasteDto);
-                    addWasteToList(wasteResource,imageProperty, quantityProperty, dateProperty, locationProperty, wastes);
-
+                    addWasteToList(wasteResource, imageProperty, quantityProperty, dateProperty, locationProperty, wastes);
                 }
 
                 return new ResponseEntity<>(wastes, HttpStatus.OK);
@@ -708,11 +709,12 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     private void addWasteToList(Resource wasteResource, Property imageProperty, Property quantityProperty,
                                 Property collectionDateProperty, Property collectionLocationProperty,
                                 List<WasteDto> wastes) {
 
-        // Extract values for waste properties
+        // Extract values for waste properties safely
         String image = getLiteralValue(wasteResource, imageProperty);
         String quantityString = getLiteralValue(wasteResource, quantityProperty);
         String collectionDateString = getLiteralValue(wasteResource, collectionDateProperty);
@@ -720,7 +722,7 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
 
         // Create a WasteDto instance and set its properties
         WasteDto wasteDto = new WasteDto();
-        wasteDto.setWaste(wasteResource.getURI()); // Corrected this line
+        wasteDto.setWasteUri(wasteResource.getURI());
 
         wasteDto.setImage(image);
 
@@ -736,7 +738,7 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
         if (collectionDateString != null) {
             try {
                 wasteDto.setCollection_date(LocalDateTime.parse(collectionDateString, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-            } catch (DateTimeParseException e) {
+            } catch (Exception e) {
                 System.err.println("Error parsing collection date: " + collectionDateString);
                 wasteDto.setCollection_date(null);  // Set to null if the date cannot be parsed
             }
@@ -749,7 +751,6 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
         // Add the WasteDto to the list
         wastes.add(wasteDto);
     }
-
 
     @PostMapping("/addWaste")
     @CrossOrigin(origins = "http://localhost:4200")
@@ -775,18 +776,21 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
                 // Save the model to the file
                 JenaEngine.saveModel(model, "data/ecodev.owl");
 
+                // Set the waste URI in the response DTO
+                wasteDto.setWasteUri(wasteUri);
+
                 // Return a successful response with the waste URI
-                ResponseMessage responseMessage = new ResponseMessage("Waste added successfully", wasteUri);
+                ResponseMessage responseMessage = new ResponseMessage("Waste added successfully", wasteDto.getWasteUri());
                 return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
 
             } catch (Exception e) {
                 // Return an error response if something goes wrong
-                ResponseMessage responseMessage = new ResponseMessage("Error adding Waste: " + e.getMessage(),  null);
+                ResponseMessage responseMessage = new ResponseMessage("Error adding Waste: " + e.getMessage(), null);
                 return new ResponseEntity<>(responseMessage, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
             // Return an error response if the model is null
-            ResponseMessage responseMessage = new ResponseMessage("Error when reading model from ontology",  null);
+            ResponseMessage responseMessage = new ResponseMessage("Error when reading model from ontology", null);
             return new ResponseEntity<>(responseMessage, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -796,35 +800,40 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
     public ResponseEntity<String> updateWaste(@RequestBody WasteDto wasteDto) {
         if (model != null) {
             try {
-                Resource wasteResource = model.getResource(wasteDto.getImage()); // Assuming image URI as unique identifier
-
-                if (wasteResource != null && wasteResource.hasProperty(RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste"))) {
-                    Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
-                    Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
-                    Property dateProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_date");
-                    Property locationProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_location");
-
-                    model.removeAll(wasteResource, imageProperty, null);
-                    model.removeAll(wasteResource, quantityProperty, null);
-                    model.removeAll(wasteResource, dateProperty, null);
-                    model.removeAll(wasteResource, locationProperty, null);
-
-                    model.add(wasteResource, imageProperty, wasteDto.getImage());
-                    model.add(wasteResource, quantityProperty, Integer.toString(wasteDto.getQuantity()));
-                    model.add(wasteResource, dateProperty, wasteDto.getCollection_date().toString());
-                    model.add(wasteResource, locationProperty, wasteDto.getCollection_location());
-
-                    JenaEngine.saveModel(model, "data/ecodev.owl");
-
-                    return new ResponseEntity<>("Waste updated successfully: " + wasteDto.getImage(), HttpStatus.OK);
-                } else {
-                    return new ResponseEntity<>("Waste not found", HttpStatus.NOT_FOUND);
+                // Check if the waste resource exists
+                Resource wasteResource = model.getResource(wasteDto.getWasteUri());
+                if (wasteResource == null) {
+                    return new ResponseEntity<>("Waste resource not found", HttpStatus.NOT_FOUND);
                 }
+
+                // Update waste properties
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+                Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
+                Property dateProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_date");
+                Property locationProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collection_location");
+
+                // Update properties
+                wasteResource.removeAll(imageProperty);
+                wasteResource.addProperty(imageProperty, wasteDto.getImage());
+                wasteResource.removeAll(quantityProperty);
+                wasteResource.addProperty(quantityProperty, Integer.toString(wasteDto.getQuantity()));
+                wasteResource.removeAll(dateProperty);
+                wasteResource.addProperty(dateProperty, wasteDto.getCollection_date().toString());
+                wasteResource.removeAll(locationProperty);
+                wasteResource.addProperty(locationProperty, wasteDto.getCollection_location());
+
+                // Save changes to the model
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Return success response
+                return new ResponseEntity<>("Waste updated successfully", HttpStatus.OK);
+
             } catch (Exception e) {
-                return new ResponseEntity<>("Error updating Waste: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+                // Handle errors
+                return new ResponseEntity<>("Error updating waste: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
-            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Model is null", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/deleteWaste")
@@ -832,7 +841,7 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
     public ResponseEntity<String> deleteWaste(@RequestBody WasteDto wasteDto) {
         if (model != null) {
             try {
-                String wasteUri = wasteDto.getWaste();
+                String wasteUri = wasteDto.getWasteUri();
 
                 Resource wasteResource = model.getResource(wasteUri);
 
@@ -849,10 +858,11 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
             }
         } else {
             return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
-        }}
+        }
+    }
 
 
-                                          //FARAH//
+    //FARAH//
 
     @GetMapping("/getAllCenters")
     @CrossOrigin(origins = "http://localhost:4200")
@@ -969,6 +979,129 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
                 return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(new ResponseMessage("Error adding Center: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    ////SARRA
+    @GetMapping("/getAllRecycledProducts")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<RecycledProductDto>> getAllRecycledProducts() {
+        List<RecycledProductDto> recycledProducts = new ArrayList<>();
+
+        if (model != null) {
+            try {
+                // Define the URI for RecycledProduct type
+                Resource recycledProductType = model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledProduct");
+
+                // Define properties for recycled product attributes
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                Property descriptionProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description");
+                Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
+                Property priceProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#price");
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+
+                // Iterate over all NamedIndividuals
+                StmtIterator namedIndividuals = model.listStatements(null, RDF.type, (RDFNode) null);
+                while (namedIndividuals.hasNext()) {
+                    Statement statement = namedIndividuals.nextStatement();
+                    Resource productResource = statement.getSubject();
+
+                    // Check if it's a recycled product based on URI or rdf:type
+                    if (productResource.getURI() != null && productResource.getURI().contains("RecycledProduct")) {
+                        // Add the recycled product to the list
+                        addRecycledProductToList(productResource, nameProperty, descriptionProperty, quantityProperty,
+                                priceProperty, imageProperty, recycledProducts);
+                    }
+                }
+
+                return new ResponseEntity<>(recycledProducts, HttpStatus.OK);
+            } catch (Exception e) {
+                System.err.println("Error retrieving recycled products: " + e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            System.err.println("Model is null - Error when reading model from ontology");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    private void addRecycledProductToList(Resource productResource, Property nameProperty, Property descriptionProperty,
+                                          Property quantityProperty, Property priceProperty, Property imageProperty,
+                                          List<RecycledProductDto> recycledProducts) {
+        String name = getLiteralValue(productResource, nameProperty);
+        String description = getLiteralValue(productResource, descriptionProperty);
+        String quantityString = getLiteralValue(productResource, quantityProperty);
+        String priceString = getLiteralValue(productResource, priceProperty);
+        String image = getLiteralValue(productResource, imageProperty);
+
+        // Create a RecycledProductDto instance and set its properties
+        RecycledProductDto recycledProductDto = new RecycledProductDto();
+        recycledProductDto.setProductUri(productResource.getURI());
+        recycledProductDto.setName(name);
+        recycledProductDto.setDescription(description);
+
+        // Parse quantity safely
+        try {
+            recycledProductDto.setQuantity(quantityString != null ? Integer.parseInt(quantityString) : 0);
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing quantity: " + quantityString);
+            recycledProductDto.setQuantity(0);  // Set to 0 if the quantity cannot be parsed
+        }
+
+        // Parse price safely
+        try {
+            recycledProductDto.setPrice(priceString != null ? Float.parseFloat(priceString) : 0.0f);
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing price: " + priceString);
+            recycledProductDto.setPrice(0.0f);  // Set to 0.0 if the price cannot be parsed
+        }
+
+        recycledProductDto.setImage(image);
+
+        recycledProducts.add(recycledProductDto);
+    }
+
+
+
+    @PostMapping("/addRecycledProduct")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<ResponseMessage> addRecycledProduct(@RequestBody RecycledProductDto recycledProductDto) {
+        if (model != null) {
+            try {
+                // Générer une URI unique pour le produit recyclé
+                String productUri = "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledProduct" + UUID.randomUUID().toString();
+
+                // Créer la ressource RecycledProduct avec l'URI générée
+                Resource productResource = model.createResource(productUri);
+
+                // Définir les propriétés pour l'entité RecycledProduct
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+                Property descriptionProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description");
+                Property quantityProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#quantity");
+                Property priceProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#price");
+                Property imageProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#image");
+
+                // Ajouter le type RDF pour la ressource RecycledProduct
+                model.add(productResource, RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledProduct"));
+
+                // Ajouter les propriétés à la ressource
+                model.add(productResource, nameProperty, recycledProductDto.getName());
+                model.add(productResource, descriptionProperty, recycledProductDto.getDescription());
+                model.add(productResource, quantityProperty, Integer.toString(recycledProductDto.getQuantity()));
+                model.add(productResource, priceProperty, Float.toString(recycledProductDto.getPrice()));
+                model.add(productResource, imageProperty, recycledProductDto.getImage());
+
+                // Sauvegarder le modèle
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Retourner un message structuré en JSON
+                ResponseMessage responseMessage = new ResponseMessage("Recycled Product added successfully", productUri);
+                return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new ResponseMessage("Error adding Recycled Product: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
             return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -18,17 +18,17 @@ public class WasteDto {
     private String collection_location;
 
     // Getters and Setters
+    private String  wasteUri;
 
-
-    private String  waste;
-
-    public String getWaste() {
-        return waste;
+    public String getWasteUri() {
+        return wasteUri;
     }
 
-    public void setWaste(String waste) {
-        this.waste = waste;
+    public void setWasteUri(String wasteUri) {
+        this.wasteUri = wasteUri;
     }
+
+
 
     public String getImage() {
         return image;

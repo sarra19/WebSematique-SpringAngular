@@ -7,6 +7,15 @@ public class RecycledProductDto {
     private String description ;
     private int quantity;
     private Float price ;
+    private String productUri;
+
+    public String getProductUri() {
+        return productUri;
+    }
+
+    public void setProductUri(String productUri) {
+        this.productUri = productUri;
+    }
 
     public String getName() {
         return name;
