@@ -1,11 +1,22 @@
 package tn.sem.websem;
 
 public class PublicationDto {
+
     private String title;
     private String description;
     private String content;
     private String category;
     private String tags;
+
+    private String publication;
+
+    public String getPublication() {
+        return publication;
+    }
+
+    public void setPublication(String publication) {
+        this.publication = publication;
+    }
 
     public String getTitle() {
         return title;
@@ -47,3 +58,4 @@ public class PublicationDto {
         this.tags = tags;
     }
 }
+

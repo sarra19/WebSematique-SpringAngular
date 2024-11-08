@@ -42,6 +42,7 @@ import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.update.UpdateAction;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
+import java.net.URLDecoder;
 
 @RestController
 public class RestApi {
@@ -1107,5 +1108,190 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
             return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+
+
+
+    // Publication CRUD Operations
+    @PostMapping("/addPublication")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<ResponseMessage> addPublication(@RequestBody PublicationDto publicationDto) {
+        if (model != null) {
+            try {
+                // Générer une URI unique pour la publication
+                String publicationUri = "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication" + UUID.randomUUID().toString();
+
+                // Créer la ressource Publication avec l'URI générée
+                Resource publicationResource = model.createResource(publicationUri);
+
+                // Définir les propriétés pour l'entité Publication
+                Property titleProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#title");
+                Property descriptionProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description");
+                Property contentProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#content");
+                Property categoryProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category");
+                Property tagsProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#tags");
+
+                // Ajouter le type RDF pour la ressource Publication
+                model.add(publicationResource, RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication"));
+
+                // Ajouter les propriétés à la ressource
+                model.add(publicationResource, titleProperty, publicationDto.getTitle());
+                model.add(publicationResource, descriptionProperty, publicationDto.getDescription());
+                model.add(publicationResource, contentProperty, publicationDto.getContent());
+                model.add(publicationResource, categoryProperty, publicationDto.getCategory());
+                model.add(publicationResource, tagsProperty, publicationDto.getTags());
+
+                // Sauvegarder le modèle
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Retourner un message structuré en JSON
+                ResponseMessage responseMessage = new ResponseMessage("Publication added successfully", publicationUri);
+                return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new ResponseMessage("Error adding Publication: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/getAllPublications")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<PublicationDto>> getAllPublications() {
+        List<PublicationDto> publications = new ArrayList<>();
+
+        if (model != null) {
+            try {
+                // Définir le type Publication
+                Resource publicationType = model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication");
+
+                // Définir les propriétés pour l'entité Publication
+                Property titleProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#title");
+                Property descriptionProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description");
+                Property contentProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#content");
+                Property categoryProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category");
+                Property tagsProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#tags");
+
+                // Parcourir les individus nommés
+                StmtIterator namedIndividuals = model.listStatements(null, RDF.type, (RDFNode) null);
+                while (namedIndividuals.hasNext()) {
+                    Statement statement = namedIndividuals.nextStatement();
+                    Resource publicationResource = statement.getSubject();
+
+                    // Vérifier si la ressource est une Publication
+                    if (publicationResource.getURI() != null && publicationResource.getURI().contains("Publication")) {
+                        // Ajouter la publication à la liste
+                        addPublicationToList(publicationResource, titleProperty, descriptionProperty, contentProperty,
+                                categoryProperty, tagsProperty, publications);
+                    }
+                }
+
+                return new ResponseEntity<>(publications, HttpStatus.OK);
+            } catch (Exception e) {
+                System.err.println("Error retrieving publications: " + e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            System.err.println("Model is null - Error when reading model from ontology");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Méthode auxiliaire pour ajouter une publication à la liste
+    // Méthode auxiliaire pour ajouter une publication à la liste
+    private void addPublicationToList(Resource publicationResource, Property titleProperty, Property descriptionProperty,
+                                      Property contentProperty, Property categoryProperty, Property tagsProperty,
+                                      List<PublicationDto> publications) {
+        String title = getLiteralValuePublication(publicationResource, titleProperty);
+        String description = getLiteralValuePublication(publicationResource, descriptionProperty);
+        String content = getLiteralValuePublication(publicationResource, contentProperty);
+        String category = getLiteralValuePublication(publicationResource, categoryProperty);
+        String tags = getLiteralValuePublication(publicationResource, tagsProperty);
+
+        // Créer une instance de PublicationDto et définir ses propriétés
+        PublicationDto publicationDto = new PublicationDto();
+        publicationDto.setPublication(publicationResource.getURI());
+        publicationDto.setTitle(title);
+        publicationDto.setDescription(description);
+        publicationDto.setContent(content);
+        publicationDto.setCategory(category);
+        publicationDto.setTags(tags);
+
+        publications.add(publicationDto);
+    }
+
+    // Méthode auxiliaire pour récupérer la valeur littérale d'une propriété
+    private String getLiteralValuePublication(Resource resource, Property property) {
+        Statement statement = resource.getProperty(property);
+        return statement != null ? statement.getObject().toString() : null;
+    }
+
+
+    @PutMapping("/updatePublication")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<String> updatePublication(@RequestBody PublicationDto publicationDto) {
+        if (model != null) {
+            try {
+                // Récupérer la ressource Publication en utilisant l'URI
+                Resource publicationResource = model.getResource(publicationDto.getPublication()); // URI unique de la publication à mettre à jour
+
+                if (publicationResource != null && publicationResource.hasProperty(RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication"))) {
+                    // Supprimer les anciennes valeurs
+                    Property titleProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#title");
+                    Property descriptionProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#description");
+                    Property contentProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#content");
+                    Property categoryProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category");
+                    Property tagsProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#tags");
+
+                    // Supprimer les anciennes propriétés (si présentes)
+                    model.removeAll(publicationResource, titleProperty, null);
+                    model.removeAll(publicationResource, descriptionProperty, null);
+                    model.removeAll(publicationResource, contentProperty, null);
+                    model.removeAll(publicationResource, categoryProperty, null);
+                    model.removeAll(publicationResource, tagsProperty, null);
+
+                    // Ajouter les nouvelles valeurs
+                    model.add(publicationResource, titleProperty, publicationDto.getTitle());
+                    model.add(publicationResource, descriptionProperty, publicationDto.getDescription());
+                    model.add(publicationResource, contentProperty, publicationDto.getContent());
+                    model.add(publicationResource, categoryProperty, publicationDto.getCategory());
+                    model.add(publicationResource, tagsProperty, publicationDto.getTags());
+
+                    // Sauvegarder le modèle
+                    JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                    return new ResponseEntity<>("Publication updated successfully: " + publicationDto.getPublication(), HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Publication not found", HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity<>("Error updating Publication: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>("Error when reading model from ontology", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @DeleteMapping("/deletePublication/{publicationUri}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<String> deletePublication(@PathVariable String publicationUri) {
+        // Décoder l'URL avant de l'utiliser
+        String decodedUri = URLDecoder.decode(publicationUri, StandardCharsets.UTF_8);
+        // Utiliser l'URI décodée pour supprimer la publication
+        // Récupérer la publication à supprimer avec le URI décodé
+        Resource publicationResource = model.getResource(decodedUri);
+
+        if (publicationResource != null) {
+            // Procéder à la suppression de la publication
+            model.removeAll(publicationResource, null, null);
+            JenaEngine.saveModel(model, "data/ecodev.owl");
+            return new ResponseEntity<>("Publication deleted successfully: " + decodedUri, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Publication not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
 

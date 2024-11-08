@@ -1,4 +1,4 @@
-export class publication {
+export class Publication {
     title!: string;
     description!: string;
     content!: string;

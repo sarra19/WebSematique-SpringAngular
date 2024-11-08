@@ -1,21 +1,12 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RecycledProductService {
-
-  constructor() { }
-}
-// src/app/service/recycled-product.service.ts
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { recycledProduct } from '../models/recycledProduct';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class RecycledProductService {
   private apiUrl = 'http://localhost:8085';  // URL de l'API Spring Boot
 

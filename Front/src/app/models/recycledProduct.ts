@@ -4,5 +4,7 @@ export class recycledProduct {
     description!: string;
     quantity!: number;
     price!: number;
+    productUri!: string;
+
   
    }

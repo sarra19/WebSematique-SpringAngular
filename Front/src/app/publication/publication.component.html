@@ -1,1 +1,36 @@
-<p>publication works!</p>
+<div class="publication-container">
+    <h1>List of Publications</h1>
+  
+    <!-- Form for adding or editing a publication -->
+    <div class="publication-form">
+      <h3>{{ selectedPublication ? 'Edit Publication' : 'Add New Publication' }}</h3>
+      <form (ngSubmit)="selectedPublication ? updatePublication() : addPublication()">
+        <input [(ngModel)]="selectedPublication ? selectedPublication.title : newPublication.title" name="title" placeholder="Publication Title" required>
+        <input [(ngModel)]="selectedPublication ? selectedPublication.description : newPublication.description" name="description" placeholder="Publication Description" required>
+        <textarea [(ngModel)]="selectedPublication ? selectedPublication.content : newPublication.content" name="content" placeholder="Publication Content" required></textarea>
+        <input [(ngModel)]="selectedPublication ? selectedPublication.category : newPublication.category" name="category" placeholder="Category" required>
+        <input [(ngModel)]="selectedPublication ? selectedPublication.tags : newPublication.tags" name="tags" placeholder="Tags" required>
+        
+        <button type="submit">{{ selectedPublication ? 'Update Publication' : 'Add Publication' }}</button>
+        <button *ngIf="selectedPublication" type="button" (click)="cancelEdit()">Cancel</button>
+      </form>
+    </div>
+  
+    <!-- List of publications -->
+    <div *ngIf="publications.length > 0; else noPublications">
+      <div *ngFor="let publication of publications" class="publication-card">
+        <h2>{{ publication.title }}</h2>
+        <p><strong>Description:</strong> {{ publication.description }}</p>
+        <p><strong>Category:</strong> {{ publication.category }}</p>
+        <p><strong>Tags:</strong> {{ publication.tags }}</p>
+        <p><strong>Content:</strong> {{ publication.content }}</p>
+      
+        <button (click)="editPublication(publication)">Edit</button>
+        <button (click)="deletePublication(publication.title)">Delete</button>
+      </div>
+    </div>
+  
+    <ng-template #noPublications>
+      <p>No publications available.</p>
+    </ng-template>
+</div>
