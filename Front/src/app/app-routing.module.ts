@@ -6,6 +6,7 @@ import { EventComponent } from './event/event.component';
 import { PublicationComponent } from './publication/publication.component';
 import { RecycledProductComponent } from './recycled-product/recycled-product.component';
 import { WasteComponent } from './waste/waste.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'publication', component: PublicationComponent },
   { path: 'recycled-product', component: RecycledProductComponent },
   { path: 'waste', component: WasteComponent },
+  { path: 'user', component: UserComponent },
+
 
 
 

@@ -12,6 +12,7 @@ import { PublicationComponent } from './publication/publication.component';
 import { WasteComponent } from './waste/waste.component';
 import { EventComponent } from './event/event.component';
 import { RecycledProductComponent } from './recycled-product/recycled-product.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { RecycledProductComponent } from './recycled-product/recycled-product.co
     WasteComponent,
     EventComponent,
     RecycledProductComponent,
+    UserComponent,
 
   ],
   imports: [

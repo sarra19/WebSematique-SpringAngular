@@ -44,6 +44,18 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#made_with"/>
+        </owl:onProperty>
+        <owl:onClass>
+          <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Category"/>
+        </owl:onClass>
+        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+        >1</owl:minQualifiedCardinality>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#produced_from"/>
         </owl:onProperty>
         <owl:onClass>
@@ -60,18 +72,6 @@
         </owl:onProperty>
         <owl:onClass>
           <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#SalesCenter"/>
-        </owl:onClass>
-        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-        >1</owl:minQualifiedCardinality>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#made_with"/>
-        </owl:onProperty>
-        <owl:onClass>
-          <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Category"/>
         </owl:onClass>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
@@ -123,9 +123,11 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collect"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#work_in"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste"/>
+        <owl:onClass>
+          <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Collection"/>
+        </owl:onClass>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -133,11 +135,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#work_in"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collect"/>
         </owl:onProperty>
-        <owl:onClass>
-          <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Collection"/>
-        </owl:onClass>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Waste"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -155,9 +155,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_type_of"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_the_response"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeReclamation"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Response"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -165,9 +165,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_the_response"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_type_of"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Response"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeReclamation"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -236,9 +236,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_type_notification"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#send_by"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeNotif"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Channel"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -246,9 +246,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#send_by"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_type_notification"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Channel"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeNotif"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -304,9 +304,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collect_with"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#distribute_waste_to"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#vehicle"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecyclingCenter"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -324,9 +324,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#distribute_waste_to"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collect_with"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecyclingCenter"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#vehicle"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -405,11 +405,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_typeof"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#target_the"/>
         </owl:onProperty>
-        <owl:onClass>
-          <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeAwareness"/>
-        </owl:onClass>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Target"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -417,9 +415,11 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#target_the"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_typeof"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Target"/>
+        <owl:onClass>
+          <owl:Class rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#TypeAwareness"/>
+        </owl:onClass>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -432,9 +432,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#recieve"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Write"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Notification"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Comment"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -442,9 +442,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Write"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#recieve"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Comment"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Notification"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -457,9 +457,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_as_planning"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#hasFeedback"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Program"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#FeedBack"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -467,9 +467,9 @@
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#hasFeedback"/>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#has_as_planning"/>
         </owl:onProperty>
-        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#FeedBack"/>
+        <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Program"/>
         <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
         >1</owl:minQualifiedCardinality>
       </owl:Restriction>
@@ -550,10 +550,8 @@
         <ontologie1:role>1</ontologie1:role>
         <owl:equivalentClass>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#publish"/>
-            </owl:onProperty>
-            <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication"/>
+            <owl:onProperty rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#organise"/>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Training"/>
             <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
             >1</owl:minQualifiedCardinality>
           </owl:Restriction>
@@ -563,8 +561,10 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
         <owl:equivalentClass>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#organise"/>
-            <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Training"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#publish"/>
+            </owl:onProperty>
+            <owl:onClass rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publication"/>
             <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
             >1</owl:minQualifiedCardinality>
           </owl:Restriction>
@@ -1036,7 +1036,7 @@
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#role">
     <rdfs:domain rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#User"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name_collector">
     <rdfs:domain rdf:resource="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collector"/>
@@ -1152,13 +1152,6 @@
     <ontologie1:username>user2</ontologie1:username>
     <ontologie1:role>0</ontologie1:role>
   </owl:NamedIndividual>
-  <ontologie1:Publication rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Publicationf603fe5c-6aa5-4539-9fcd-4d95465634cb">
-    <ontologie1:tags>2</ontologie1:tags>
-    <ontologie1:category>test</ontologie1:category>
-    <ontologie1:content>test</ontologie1:content>
-    <ontologie1:description>pub desc</ontologie1:description>
-    <ontologie1:title>pub1</ontologie1:title>
-  </ontologie1:Publication>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Event360b75e5-534f-4b64-8506-30a7069036b8">
     <ontologie1:date>2024-12-02T10:00:00</ontologie1:date>
     <ontologie1:title>event3</ontologie1:title>
@@ -1358,6 +1351,12 @@
     <ontologie1:dateCertification>25/09/2024</ontologie1:dateCertification>
     <ontologie1:nameCertification>Certif2</ontologie1:nameCertification>
   </owl:NamedIndividual>
+  <ontologie1:User rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Userff10ef31-f21f-410c-b587-fc1203af0943">
+    <ontologie1:name>John Doe</ontologie1:name>
+    <ontologie1:username>john_doe</ontologie1:username>
+    <ontologie1:email>john.doe@example.com</ontologie1:email>
+    <ontologie1:role>1</ontologie1:role>
+  </ontologie1:User>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#collector2">
     <ontologie1:name_collector>collector 2</ontologie1:name_collector>
     <ontologie1:address_collector>sousse</ontologie1:address_collector>
@@ -1432,14 +1431,6 @@
     <ontologie1:address>sousse</ontologie1:address>
   </owl:NamedIndividual>
   <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#openingHours"/>
-  <ontologie1:DeliveryAgence rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#DeliveryAgence570f0a68-0c3f-4a97-b457-010aa81cdd68">
-    <ontologie1:image>image.jpg</ontologie1:image>
-    <ontologie1:closingHours>11:00 PM</ontologie1:closingHours>
-    <ontologie1:openingHours>08:00 AM</ontologie1:openingHours>
-    <ontologie1:phoneNumber>23335669</ontologie1:phoneNumber>
-    <ontologie1:address>tunis</ontologie1:address>
-    <ontologie1:name>agence 1 </ontologie1:name>
-  </ontologie1:DeliveryAgence>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#waste1">
     <ontologie1:image>waste.jpg</ontologie1:image>
     <ontologie1:collection_location>tunis</ontologie1:collection_location>
@@ -1466,13 +1457,13 @@
     <ontologie1:email>center2@gmail.com</ontologie1:email>
     <ontologie1:opening_hours>9:00 AM</ontologie1:opening_hours>
   </owl:NamedIndividual>
-  <ontologie1:RecycledProduct rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#RecycledProduct97e1e719-a513-4607-8946-f76828e2a63e">
-    <ontologie1:name>yeiooo</ontologie1:name>
-    <ontologie1:description>tt</ontologie1:description>
-    <ontologie1:quantity>56</ontologie1:quantity>
-    <ontologie1:price>55.2</ontologie1:price>
-    <ontologie1:image>xx.png</ontologie1:image>
-  </ontologie1:RecycledProduct>
+  <ontologie1:User rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Userf5bf0c91-067a-40ba-ade3-f203e48549c5">
+    <ontologie1:name>John Doe</ontologie1:name>
+    <ontologie1:email>john.doe@example.com</ontologie1:email>
+    <ontologie1:role>1</ontologie1:role>
+    <ontologie1:password>securePassword123</ontologie1:password>
+    <ontologie1:username>john_doe2</ontologie1:username>
+  </ontologie1:User>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#category_Prod1">
     <ontologie1:name>wood</ontologie1:name>
     <ontologie1:category_description>this is wood category</ontologie1:category_description>
@@ -1486,6 +1477,13 @@
     <ontologie1:location>kef</ontologie1:location>
     <ontologie1:date>2024-12-02T10:00:00</ontologie1:date>
   </owl:NamedIndividual>
+  <ontologie1:User rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Usereeac2aa4-500f-4b18-a38a-36a99660525f">
+    <ontologie1:name>jjj</ontologie1:name>
+    <ontologie1:email>sarra.benhamida@esprit.tn</ontologie1:email>
+    <ontologie1:role>1</ontologie1:role>
+    <ontologie1:password>iii</ontologie1:password>
+    <ontologie1:username>sarro123</ontologie1:username>
+  </ontologie1:User>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#Center14dffe3f-e489-4d1b-93ac-98a717500556">
     <ontologie1:name>Nom du centre</ontologie1:name>
     <ontologie1:phoneNumber>Numéro de téléphone</ontologie1:phoneNumber>

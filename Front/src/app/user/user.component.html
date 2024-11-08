@@ -1,0 +1,63 @@
+<div class="user-container">
+    <h1 class="text-center">List of Users</h1>
+
+    <!-- Form for adding or editing a user -->
+    <div class="user-form">
+        <h3>{{ selectedUser ? 'Edit User' : 'Add New User' }}</h3>
+        <form (ngSubmit)="selectedUser ? updateUser() : addUser()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input [(ngModel)]="selectedUser ? selectedUser.username : newUser.username" 
+                       name="username" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]="selectedUser ? selectedUser.email : newUser.email" 
+                       name="email" id="email" type="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input [(ngModel)]="selectedUser ? selectedUser.name : newUser.name" 
+                       name="name" id="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select [(ngModel)]="selectedUser ? selectedUser.role : newUser.role" 
+                        name="role" id="role" required>
+                    <option value="1">Admin</option>
+                    <option value="0">User</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input [(ngModel)]="selectedUser ? selectedUser.password : newUser.password" 
+                       name="password" id="password" type="password" placeholder="Password" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    {{ selectedUser ? 'Update User' : 'Add User' }}
+                </button>
+                <button *ngIf="selectedUser" type="button" (click)="cancelEdit()" class="btn-cancel">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+  
+    <!-- List of users -->
+    <div *ngIf="users.length > 0; else noUsers">
+        <div *ngFor="let user of users" class="user-card">
+            <h2>{{ user.username }}</h2>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Role:</strong> {{ user.role === 1 ? 'Admin' : 'User' }}</p>
+            <div class="action-buttons">
+                <button (click)="editUser(user)" class="btn-edit">Edit</button>
+            </div>
+        </div>
+    </div>
+  
+    <ng-template #noUsers>
+        <p class="text-center">No users available.</p>
+    </ng-template>
+</div>

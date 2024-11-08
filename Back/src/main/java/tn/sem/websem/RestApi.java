@@ -2,46 +2,21 @@ package tn.sem.websem;
 
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Map;
 import java.util.*;
 
-import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.update.UpdateExecutionFactory;
-import org.apache.jena.update.UpdateFactory;
-import org.apache.jena.update.UpdateProcessor;
-import org.apache.jena.update.UpdateRequest;
 import org.apache.jena.vocabulary.RDF;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFormatter;
-import org.apache.jena.update.UpdateAction;
-import org.apache.jena.update.UpdateFactory;
-import org.apache.jena.update.UpdateRequest;
 import java.net.URLDecoder;
 
 @RestController
@@ -1109,6 +1084,112 @@ public ResponseEntity<List<EventDto>> getAllEvents() {
         }
     }
 
+    @GetMapping("/getAllUsers")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> users = new ArrayList<>();
+
+        if (model != null) {
+            try {
+                // Define the URI for User type
+                Resource userType = model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#User");
+
+                // Define properties for user attributes
+                Property usernameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#username");
+                Property passwordProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#password");
+                Property roleProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#role");
+                Property emailProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email");
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+
+                // Ajouter
+                // Iterate over all NamedIndividuals
+                StmtIterator namedIndividuals = model.listStatements(null, RDF.type, userType);
+                while (namedIndividuals.hasNext()) {
+                    Statement statement = namedIndividuals.nextStatement();
+                    Resource userResource = statement.getSubject();
+
+                    // Add the user to the list
+                    addUserToList(userResource, nameProperty, usernameProperty, emailProperty, roleProperty,passwordProperty, users);
+                }
+
+                return new ResponseEntity<>(users, HttpStatus.OK);
+            } catch (Exception e) {
+                System.err.println("Error retrieving users: " + e.getMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            System.err.println("Model is null - Error when reading model from ontology");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private void addUserToList(Resource userResource, Property nameProperty, Property usernameProperty,
+                               Property emailProperty, Property roleProperty, Property passwordProperty, List<UserDto> users) {
+        String name = getLiteralValue(userResource, nameProperty);
+        String username = getLiteralValue(userResource, usernameProperty);
+        String email = getLiteralValue(userResource, emailProperty);
+        String roleString = getLiteralValue(userResource, roleProperty);
+        String password = getLiteralValue(userResource, passwordProperty);
+
+        // Create a UserDto instance and set its properties
+        UserDto userDto = new UserDto();
+        userDto.setUserUri(userResource.getURI());
+        userDto.setName(name);
+        userDto.setUsername(username);
+        userDto.setEmail(email);
+        userDto.setPassword(password);
+
+        // Parse role safely
+        try {
+            userDto.setRole(roleString != null ? Integer.parseInt(roleString) : 0);
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing role: " + roleString);
+            userDto.setRole(0);  // Set to 0 if the role cannot be parsed
+        }
+
+        users.add(userDto);
+    }
+    @PostMapping("/addUser")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<ResponseMessage> addUser(@RequestBody UserDto userDto) {
+        if (model != null) {
+            try {
+                // Générer une URI unique pour le user
+                String userUri = "http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#User" + UUID.randomUUID().toString();
+
+                // Créer la ressource User avec l'URI générée
+                Resource userResource = model.createResource(userUri);
+
+                // Définir les propriétés pour l'entité User
+                Property usernameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#username");
+                Property passwordProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#password");
+                Property roleProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#role");
+                Property emailProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#email");
+                Property nameProperty = model.createProperty("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#name");
+
+                // Ajouter le type RDF pour la ressource User
+                model.add(userResource, RDF.type, model.createResource("http://www.semanticweb.org/nvsar/ontologies/2024/9/ontologie1#User"));
+
+                // Ajouter les propriétés à la ressource
+                model.add(userResource, usernameProperty, userDto.getUsername());
+                model.add(userResource, passwordProperty, userDto.getPassword());
+                model.add(userResource, roleProperty, Integer.toString(userDto.getRole()));
+                model.add(userResource, emailProperty, userDto.getEmail());
+                model.add(userResource, nameProperty, userDto.getName());
+
+                // Sauvegarder le modèle
+                JenaEngine.saveModel(model, "data/ecodev.owl");
+
+                // Retourner un message structuré en JSON
+                ResponseMessage responseMessage = new ResponseMessage("User added successfully", userUri);
+                return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new ResponseMessage("Error adding User: " + e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity<>(new ResponseMessage("Error when reading model from ontology", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 

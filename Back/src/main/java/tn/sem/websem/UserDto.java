@@ -1,39 +1,35 @@
 package tn.sem.websem;
 
-import java.time.LocalDateTime;
-
 public class UserDto {
-
-
-
-    private String name;
-    private String user_name;
-    private int phone;
+    private String password;
+    private Integer role;  // 1 for admin, 0 for other roles
+    private String username;
     private String email;
-  private String password ;
+    private String name;
+    private String userUri;
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
-    public int getPhone() {
-        return phone;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -44,14 +40,19 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getName() {
+        return name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setName(String name) {
+        this.name = name;
     }
 
-// Getters and Setters
+    public String getUserUri() {
+        return userUri;
+    }
 
+    public void setUserUri(String userUri) {
+        this.userUri = userUri;
+    }
 }
